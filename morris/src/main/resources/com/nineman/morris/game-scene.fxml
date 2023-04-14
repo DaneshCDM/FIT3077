@@ -18,5 +18,36 @@
             <Font size="33.0" />
          </font>
       </Label>
+      <ImageView fitHeight="79.0" fitWidth="67.0" layoutX="67.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@token-white.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="70.0" fitWidth="67.0" layoutX="70.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@token-white.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="67.0" layoutX="67.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@token-white.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="70.0" fitWidth="67.0" layoutX="134.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@token-white.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="70.0" fitWidth="67.0" layoutX="198.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@token-white.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="67.0" layoutX="263.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@token-white.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="position2" styleClass="clickable" fitHeight="79.0" fitWidth="67.0" layoutX="263.0" layoutY="42.0" onMouseClicked="#onPositionClicked" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

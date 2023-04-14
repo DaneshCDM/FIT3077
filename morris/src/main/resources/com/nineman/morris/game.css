@@ -1,0 +1,7 @@
+.root {
+    -fx-background-color: derive(grey, -60%); /* Test */
+}
+
+.clickable {
+    -fx-cursor: hand;
+}
