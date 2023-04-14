@@ -28,7 +28,6 @@ public class HelloController {
 
     protected void playGame() {
         this.game = new Game();
-
     }
 
     @FXML
