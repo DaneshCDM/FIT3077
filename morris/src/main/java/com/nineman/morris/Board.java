@@ -1,6 +1,11 @@
 package com.nineman.morris;
 
-public class Board {
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
+import java.util.Iterator;
+
+public class Board implements Iterable {
     private Position positions[];
     private static final int MAX_TOKENS = 9;
     private int tokensLeft;
@@ -28,5 +33,15 @@ public class Board {
 
     public int getTokensLeft() {
         return tokensLeft;
+    }
+
+    public Position getPositions(int i) {
+        return positions[i];
+    }
+
+    @NotNull
+    @Override
+    public Iterator iterator() {
+        return Arrays.stream(positions).iterator();
     }
 }

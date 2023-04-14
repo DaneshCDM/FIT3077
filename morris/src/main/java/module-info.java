@@ -6,6 +6,7 @@ module com.nineman.morris {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires annotations;
 
     opens com.nineman.morris to javafx.fxml;
     exports com.nineman.morris;

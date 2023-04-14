@@ -1,7 +1,15 @@
-.root {
-    -fx-background-color: derive(grey, -60%); /* Test */
-}
+/*.root {*/
+/*    -fx-background-color: derive(grey, -60%); !* Test *!*/
+/*}*/
 
 .clickable {
     -fx-cursor: hand;
+}
+
+.wt {
+    -fx-image: url(token-white.png);
+}
+
+.bt {
+    -fx-image: url(token-black.png);
 }
