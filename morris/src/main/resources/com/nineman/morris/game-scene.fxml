@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="536.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nineman.morris.HelloController">
+<AnchorPane prefHeight="536.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nineman.morris.GameController">
    <children>
       <ImageView fitHeight="438.0" fitWidth="421.0" layoutX="86.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -48,6 +48,7 @@
             <Image url="@token-white.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="position2" styleClass="clickable" fitHeight="79.0" fitWidth="67.0" layoutX="263.0" layoutY="42.0" onMouseClicked="#onPositionClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="position2" fitHeight="79.0" fitWidth="67.0" layoutX="263.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+      <ImageView fx:id="position3" fitHeight="79.0" fitWidth="67.0" layoutX="453.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
    </children>
 </AnchorPane>
