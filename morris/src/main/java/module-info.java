@@ -9,4 +9,6 @@ module com.nineman.morris {
 
     opens com.nineman.morris to javafx.fxml;
     exports com.nineman.morris;
+    exports com.nineman.morris.actions;
+    opens com.nineman.morris.actions to javafx.fxml;
 }

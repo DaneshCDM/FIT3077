@@ -1,6 +1,9 @@
 package com.nineman.morris;
 
 public class Position {
+
+    /** The color of the token in this position. Null represents no token. */
+    private Color color;
     private Position positionLeft;
     private Position positionRight;
     private Position positionUp;
@@ -20,5 +23,13 @@ public class Position {
 
     public void setPositionDown(Position positionDown) {
         this.positionDown = positionDown;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

@@ -21,6 +21,11 @@ public class Board {
         this.tokensLeft = MAX_TOKENS;
     }
 
+    public void placeToken(Color color, int position) {
+        positions[position].setColor(color);
+        tokensLeft -= 1;
+    }
+
     public int getTokensLeft() {
         return tokensLeft;
     }
