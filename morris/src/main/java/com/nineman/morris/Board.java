@@ -12,18 +12,21 @@ public class Board implements Iterable {
 
     public Board() {
         // todo: initialize and connect the board cleanly
-//        positions = new Position[24];
-        positions = new Position[3];
-        positions[0] = new Position();
-        positions[1] = new Position();
-        positions[2] = new Position();
-
-        positions[0].setPositionRight(positions[1]);
-        positions[1].setPositionLeft(positions[0]);
-        positions[1].setPositionRight(positions[1]);
-        positions[2].setPositionLeft(positions[0]);
-
+        positions = new Position[24];
+        for (int i = 0; i < positions.length; i++) {
+            positions[i] = new Position();
+        }
+        for (int i = 0; i < positions.length; i = i + 3) {
+            connectHorizontal(positions[i], positions[i + 1], positions[i + 2]);
+        }
         this.tokensLeft = MAX_TOKENS;
+    }
+
+    private void connectHorizontal(Position left, Position middle, Position right) {
+        left.setPositionRight(middle);
+        middle.setPositionLeft(left);
+        middle.setPositionRight(right);
+        right.setPositionLeft(middle);
     }
 
     public void placeToken(Color color, int position) {

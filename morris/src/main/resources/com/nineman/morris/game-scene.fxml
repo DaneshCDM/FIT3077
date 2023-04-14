@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="536.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nineman.morris.GameController">
@@ -18,38 +19,33 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <ImageView fitHeight="79.0" fitWidth="67.0" layoutX="135.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@token-white.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="67.0" layoutX="70.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@token-white.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="67.0" layoutX="67.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@token-white.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="67.0" layoutX="134.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@token-white.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="67.0" layoutX="198.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@token-white.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="67.0" layoutX="263.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@token-white.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="position1" fitHeight="79.0" fitWidth="67.0" layoutX="263.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
-      <ImageView fx:id="position2" fitHeight="79.0" fitWidth="67.0" layoutX="453.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
-      <ImageView fx:id="position0" fitHeight="79.0" fitWidth="67.0" layoutX="70.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+      <Pane fx:id="positions" layoutX="86.0" layoutY="58.0" prefHeight="421.0" prefWidth="421.0">
+         <children>
+            <ImageView fx:id="position0" fitHeight="79.0" fitWidth="67.0" layoutX="-18.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position1" fitHeight="79.0" fitWidth="67.0" layoutX="177.0" layoutY="-19.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position2" fitHeight="79.0" fitWidth="67.0" layoutX="367.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position3" fitHeight="79.0" fitWidth="67.0" layoutX="50.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position4" fitHeight="79.0" fitWidth="67.0" layoutX="177.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position5" fitHeight="79.0" fitWidth="67.0" layoutX="304.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position6" fitHeight="70.0" fitWidth="67.0" layoutX="111.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position7" fitHeight="70.0" fitWidth="67.0" layoutX="176.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position8" fitHeight="70.0" fitWidth="67.0" layoutX="240.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position9" fitHeight="70.0" fitWidth="67.0" layoutX="-19.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position10" fitHeight="70.0" fitWidth="67.0" layoutX="50.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position11" fitHeight="70.0" fitWidth="67.0" layoutX="117.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position12" fitHeight="70.0" fitWidth="67.0" layoutX="244.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position13" fitHeight="70.0" fitWidth="67.0" layoutX="311.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position14" fitHeight="70.0" fitWidth="67.0" layoutX="367.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position15" fitHeight="70.0" fitWidth="67.0" layoutX="110.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position16" fitHeight="70.0" fitWidth="67.0" layoutX="177.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position17" fitHeight="70.0" fitWidth="67.0" layoutX="244.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position18" fitHeight="70.0" fitWidth="67.0" layoutX="50.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position19" fitHeight="70.0" fitWidth="67.0" layoutX="177.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position20" fitHeight="70.0" fitWidth="67.0" layoutX="300.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position21" fitHeight="79.0" fitWidth="67.0" layoutX="-9.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position22" fitHeight="79.0" fitWidth="67.0" layoutX="177.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+            <ImageView fx:id="position23" fitHeight="79.0" fitWidth="67.0" layoutX="367.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

@@ -1,6 +1,5 @@
 package com.nineman.morris;
 
-import com.almasb.fxgl.core.collection.PropertyChangeListener;
 import com.nineman.morris.actions.Action;
 import com.nineman.morris.actions.PlaceTokenAction;
 

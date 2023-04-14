@@ -3,9 +3,11 @@ package com.nineman.morris;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.EnumMap;
@@ -24,30 +26,18 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         game = new Game(this);
-        position0.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("0 clicked!!!");
-                clicks.offer("0");
-                game.playGame();
-            }
-        });
-        position1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("1 clicked!!!");
-                clicks.offer("1");
-                game.playGame();
-            }
-        });
-        position2.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("2 clicked!!!");
-                clicks.offer("2");
-                game.playGame();
-            }
-        });
+        for (int i = 0; i < positions.getChildren().size(); i++) {
+            Node node = positions.getChildren().get(i);
+            int finalI = i;
+            node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    System.out.println(String.format("%s clicked", finalI));
+                    clicks.offer(Integer.toString(finalI));
+                    game.playGame();
+                }
+            });
+        }
     }
 
     public String getClick() {
@@ -60,9 +50,8 @@ public class GameController implements Initializable {
     }
 
     public void update(Game game) {
-        List<ImageView> positions = List.of(position0, position1, position2);
-        for (int i = 0; i < positions.size(); i++) {
-            ImageView tokenView = positions.get(i);
+        for (int i = 0; i < positions.getChildren().size(); i++) {
+            Node tokenView = positions.getChildren().get(i);
             tokenView.getStyleClass().clear();
             String color = COLOR_MAP.get(game.getBoard().getPositions(i).getColor());
             if (color != null)
@@ -72,8 +61,15 @@ public class GameController implements Initializable {
         turnIndicatorText.setText(String.format("Player %s Turn", game.currentPlayerTurn()));
     }
 
-
+    @FXML private Pane positions;
+    /* To delete */
     @FXML private ImageView position0;
     @FXML private ImageView position1;
     @FXML private ImageView position2;
+    @FXML private ImageView position3;
+    @FXML private ImageView position4;
+    @FXML private ImageView position5;
+    @FXML private ImageView position6;
+    @FXML private ImageView position7;
+    @FXML private ImageView position8;
 }
