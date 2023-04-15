@@ -39,9 +39,9 @@ public class GameController implements Initializable {
                 executor.execute(() -> {
                     Game state = game.playGame();
                     Platform.runLater(() -> update(state));
-                    System.out.println(clicks);
-                    System.out.printf("current turn: %s\n", game.currentPlayerTurn());
-                    System.out.printf("%s clicked%n", finalI);
+//                    System.out.println(clicks);
+//                    System.out.printf("current turn: %s\n", game.currentPlayerTurn());
+//                    System.out.printf("%s clicked%n", finalI);
                 });
             });
         }
