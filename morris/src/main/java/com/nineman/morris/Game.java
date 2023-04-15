@@ -28,7 +28,7 @@ public class Game implements Board.MillListener {
             return this; // terminate early, find a better way to do this?
         }
         currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
-        if (noTokensLeft()) {
+        if (noTokensLeft() && gameStage.next() != Stage.JUMP_TOKEN) {
             gameStage = gameStage.next();
         }
         return this;

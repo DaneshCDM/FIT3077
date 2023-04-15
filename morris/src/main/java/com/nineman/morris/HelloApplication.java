@@ -20,4 +20,10 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        System.exit(0);
+    }
 }

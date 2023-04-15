@@ -88,8 +88,25 @@ public class Board implements Iterable<Position> {
         }
     }
 
-    public void removeToken(int position) {
+    public boolean moveToken(int from, int destination) {
+        Color fromTokenColor = positions[from].getColor();
+        Color destinationTokenColor = positions[destination].getColor();
+        if (fromTokenColor != null && destinationTokenColor == null) {
+            positions[from].setColor(null);
+            positions[destination].setColor(fromTokenColor);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean removeToken(int position, Color color) {
+        Color current = positions[position].getColor();
+        if (current == null || current == color.invert()) {
+            return false;
+        }
         positions[position].setColor(null);
+        return true;
     }
 
     public int getTokensLeft() {

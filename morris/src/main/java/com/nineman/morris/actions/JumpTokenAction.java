@@ -11,7 +11,7 @@ public class JumpTokenAction implements Action {
         int position1, position2;
         position1 = Integer.parseInt(controller.getClick());
         position2 = Integer.parseInt(controller.getClick());
-        board.removeToken(position1);
+        board.removeToken(position1, player.color);
         return board.placeToken(player.color, position2);
     }
 }

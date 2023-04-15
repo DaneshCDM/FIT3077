@@ -34,6 +34,7 @@ public class GameController implements Initializable {
                 clicks.offer(Integer.toString(finalI));
                 executor.execute(() -> {
                     Game state = game.playTurn();
+                    clicks.clear();
                     Platform.runLater(() -> update(state));
                 });
             });
