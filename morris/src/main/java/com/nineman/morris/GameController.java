@@ -1,22 +1,18 @@
 package com.nineman.morris;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,11 +33,8 @@ public class GameController implements Initializable {
             node.setOnMouseClicked(mouseEvent -> {
                 clicks.offer(Integer.toString(finalI));
                 executor.execute(() -> {
-                    Game state = game.playGame();
+                    Game state = game.playTurn();
                     Platform.runLater(() -> update(state));
-//                    System.out.println(clicks);
-//                    System.out.printf("current turn: %s\n", game.currentPlayerTurn());
-//                    System.out.printf("%s clicked%n", finalI);
                 });
             });
         }

@@ -5,5 +5,5 @@ import com.nineman.morris.Player;
 
 public interface Action {
 
-    void execute(Player player, Board board);
+    boolean execute(Player player, Board board);
 }

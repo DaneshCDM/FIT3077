@@ -25,6 +25,22 @@ public class Position {
         this.positionDown = positionDown;
     }
 
+    public Position left() {
+        return positionLeft;
+    }
+
+    public Position right() {
+        return positionRight;
+    }
+
+    public Position up() {
+        return positionUp;
+    }
+
+    public Position down() {
+        return positionDown;
+    }
+
     public void setColor(Color color) {
         this.color = color;
     }

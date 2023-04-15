@@ -4,7 +4,7 @@ import com.nineman.morris.actions.Action;
 import com.nineman.morris.actions.MoveTokenAction;
 import com.nineman.morris.actions.PlaceTokenAction;
 
-public class Game {
+public class Game implements Board.MillListener {
 
     private Board board;
     private Player player1;
@@ -22,8 +22,11 @@ public class Game {
         this.gameStage = Stage.PLACE_TOKEN;
     }
 
-    public Game playGame() {
-        gameStage.action.execute(currentPlayerTurn, board);
+    public Game playTurn() {
+        boolean status = gameStage.action.execute(currentPlayerTurn, board);
+        if (!status) {
+            return this; // terminate early, find a better way to do this?
+        }
         currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
         if (noTokensLeft()) {
             gameStage = gameStage.next();
@@ -41,6 +44,11 @@ public class Game {
 
     public boolean noTokensLeft() {
         return board.getTokensLeft() == 0;
+    }
+
+    @Override
+    public void onMillFormed(Board.Mill mill) {
+
     }
 
     private enum Stage {
