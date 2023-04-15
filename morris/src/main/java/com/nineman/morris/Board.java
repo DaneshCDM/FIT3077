@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 public class Board implements Iterable {
     private Position positions[];
-    private static final int MAX_TOKENS = 9;
+    private static final int MAX_TOKENS = 4;
     private int tokensLeft;
 
     public Board() {
@@ -32,6 +32,10 @@ public class Board implements Iterable {
     public void placeToken(Color color, int position) {
         positions[position].setColor(color);
         tokensLeft -= 1;
+    }
+
+    public void removeToken(int position) {
+        positions[position].setColor(null);
     }
 
     public int getTokensLeft() {

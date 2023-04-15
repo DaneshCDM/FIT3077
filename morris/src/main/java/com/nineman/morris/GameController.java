@@ -1,5 +1,6 @@
 package com.nineman.morris;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +16,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class GameController implements Initializable {
     @FXML
@@ -26,16 +30,19 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         game = new Game(this);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node node = positions.getChildren().get(i);
             int finalI = i;
-            node.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    System.out.println(String.format("%s clicked", finalI));
-                    clicks.offer(Integer.toString(finalI));
-                    game.playGame();
-                }
+            node.setOnMouseClicked(mouseEvent -> {
+                clicks.offer(Integer.toString(finalI));
+                executor.execute(() -> {
+                    Game state = game.playGame();
+                    Platform.runLater(() -> update(state));
+                    System.out.println(clicks);
+                    System.out.printf("current turn: %s\n", game.currentPlayerTurn());
+                    System.out.printf("%s clicked%n", finalI);
+                });
             });
         }
     }
