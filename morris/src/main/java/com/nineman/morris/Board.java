@@ -51,12 +51,23 @@ public class Board implements Iterable<Position> {
         if (positions[position].getColor() != null) {
             return false;
         }
-        positions[position].setColor(color);
+        Position pos = positions[position];
+        pos.setColor(color);
         tokensLeft -= 1;
+        if (isPartOfMill(positions[position], color)) {
+            notifyMillListener(getMill(pos));
+        }
         return true;
     }
+    /** Given a position, return a mill if it is part of it. */
+    public Mill getMill(Position pos) {
+        return null;
+//        if (detectHorizontalMill(pos, pos.getColor())) {
+//            return new Mill(pos.left())
+//        }
+    }
 
-    public boolean detectMill(Position i, Color color) {
+    public boolean isPartOfMill(Position i, Color color) {
         return detectHorizontalMill(i, color) || detectVerticalMill(i, color);
     }
 
@@ -91,7 +102,7 @@ public class Board implements Iterable<Position> {
     public boolean moveToken(int from, int destination) {
         Color fromTokenColor = positions[from].getColor();
         Color destinationTokenColor = positions[destination].getColor();
-        if (fromTokenColor != null && destinationTokenColor == null) {
+        if (fromTokenColor != null && destinationTokenColor == null && positions[from].adjacent(positions[destination])) {
             positions[from].setColor(null);
             positions[destination].setColor(fromTokenColor);
             return true;

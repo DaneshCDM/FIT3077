@@ -9,6 +9,14 @@ public class Position {
     private Position positionUp;
     private Position positionDown;
 
+    /** Checks if input position is adjacent to this position. */
+    public boolean adjacent(Position pos) {
+        if (pos == null) {
+            return false;
+        }
+        return pos == positionLeft || pos == positionRight || pos == positionUp || pos == positionDown;
+    }
+
     public void setPositionLeft(Position positionLeft) {
         this.positionLeft = positionLeft;
     }
