@@ -3,8 +3,9 @@ package com.nineman.morris;
 import com.nineman.morris.actions.Action;
 import com.nineman.morris.actions.MoveTokenAction;
 import com.nineman.morris.actions.PlaceTokenAction;
+import com.nineman.morris.actions.RemoveTokenAction;
 
-public class Game implements Board.MillListener {
+public class Game implements MillListener {
 
     private Board board;
     private Player player1;
@@ -12,6 +13,8 @@ public class Game implements Board.MillListener {
     private Player currentPlayerTurn;
     private GameController view;
     private Stage gameStage;
+    private Stage prevStage;
+    private boolean lockPlayerTurn;
 
     public Game(GameController source) {
         this.board = new Board();
@@ -20,16 +23,25 @@ public class Game implements Board.MillListener {
         this.view = source;
         this.currentPlayerTurn = player1; // White player goes first
         this.gameStage = Stage.PLACE_TOKEN;
+        this.lockPlayerTurn = false;
+        board.addMillListener(this);
     }
 
     public Game playTurn() {
         boolean status = gameStage.action.execute(currentPlayerTurn, board);
-        if (!status) {
-            return this; // terminate early, find a better way to do this?
-        }
-        currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
-        if (noTokensLeft() && gameStage.next() != Stage.JUMP_TOKEN) {
-            gameStage = gameStage.next();
+        if (status) { // Action execution failed, don't proceed the game
+            if (!lockPlayerTurn) {
+                gameStage = prevStage == null? gameStage : prevStage;
+                currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
+                if (noTokensLeft() && gameStage.next() != Stage.JUMP_TOKEN) {
+                    gameStage = gameStage.next();
+                }
+                prevStage = null;
+            } else {
+                prevStage = gameStage;
+                gameStage = Stage.REMOVE_TOKEN;
+                lockPlayerTurn = false;
+            }
         }
         return this;
     }
@@ -47,14 +59,15 @@ public class Game implements Board.MillListener {
     }
 
     @Override
-    public void onMillFormed(Board.Mill mill) {
-
+    public void onMillFormed() {
+        lockPlayerTurn = true;
     }
 
     private enum Stage {
         PLACE_TOKEN(new PlaceTokenAction()),
         MOVE_TOKEN(new MoveTokenAction()),
-        JUMP_TOKEN(new PlaceTokenAction());
+        JUMP_TOKEN(new PlaceTokenAction()),
+        REMOVE_TOKEN(new RemoveTokenAction());
         final Action action;
         private static final Stage[] vals = values();
         Stage(Action action) {

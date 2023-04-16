@@ -2,14 +2,15 @@ package com.nineman.morris;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class Board implements Iterable<Position> {
-    private Position positions[];
-    private List<MillListener> listeners = List.of();
-    private static final int MAX_TOKENS = 4;
+    private final Position[] positions;
+    private List<MillListener> listeners;
+    private static final int MAX_TOKENS = 8;
     private int tokensLeft;
 
     public Board() {
@@ -29,6 +30,7 @@ public class Board implements Iterable<Position> {
         connectVertical(positions[5], positions[13], positions[20]);
         connectVertical(positions[2], positions[14], positions[23]);
         this.tokensLeft = MAX_TOKENS;
+        this.listeners = new ArrayList<>();
     }
 
     private void connectHorizontal(Position left, Position middle, Position right) {
@@ -47,7 +49,7 @@ public class Board implements Iterable<Position> {
 
     /** You can only place tokens on an empty position. Return value indicates if placement
      * is successful. */
-    public boolean placeToken(Color color, int position) {
+    public boolean placeToken(int position, Color color) {
         if (positions[position].getColor() != null) {
             return false;
         }
@@ -55,16 +57,9 @@ public class Board implements Iterable<Position> {
         pos.setColor(color);
         tokensLeft -= 1;
         if (isPartOfMill(positions[position], color)) {
-            notifyMillListener(getMill(pos));
+            notifyMillListener();
         }
         return true;
-    }
-    /** Given a position, return a mill if it is part of it. */
-    public Mill getMill(Position pos) {
-        return null;
-//        if (detectHorizontalMill(pos, pos.getColor())) {
-//            return new Mill(pos.left())
-//        }
     }
 
     public boolean isPartOfMill(Position i, Color color) {
@@ -105,6 +100,9 @@ public class Board implements Iterable<Position> {
         if (fromTokenColor != null && destinationTokenColor == null && positions[from].adjacent(positions[destination])) {
             positions[from].setColor(null);
             positions[destination].setColor(fromTokenColor);
+            if (isPartOfMill(positions[destination], fromTokenColor)) {
+                notifyMillListener();
+            }
             return true;
         } else {
             return false;
@@ -113,7 +111,7 @@ public class Board implements Iterable<Position> {
 
     public boolean removeToken(int position, Color color) {
         Color current = positions[position].getColor();
-        if (current == null || current == color.invert()) {
+        if (current == null || current == color) {
             return false;
         }
         positions[position].setColor(null);
@@ -132,20 +130,14 @@ public class Board implements Iterable<Position> {
         listeners.add(listener);
     }
 
-    public void notifyMillListener(Mill mill) {
-        listeners.forEach(x -> x.onMillFormed(mill));
+    public void notifyMillListener() {
+        listeners.forEach(x -> x.onMillFormed());
     }
 
     @NotNull
     @Override
     public Iterator<Position> iterator() {
         return Arrays.stream(positions).iterator();
-    }
-
-    public interface MillListener {
-
-        /** Returns the positions where the mill is formed*/
-        void onMillFormed(Mill mill);
     }
 
     public class Mill {
