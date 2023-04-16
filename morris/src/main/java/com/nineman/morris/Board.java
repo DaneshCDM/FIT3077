@@ -10,7 +10,7 @@ import java.util.List;
 public class Board implements Iterable<Position> {
     private final Position[] positions;
     private List<MillListener> listeners;
-    private static final int MAX_TOKENS = 8;
+    private static final int MAX_TOKENS = 18;
     private int tokensLeft;
 
     public Board() {
@@ -122,8 +122,16 @@ public class Board implements Iterable<Position> {
         return tokensLeft;
     }
 
+    public boolean allTokensPlaced() {
+        return tokensLeft == 0;
+    }
+
     public Position getPositions(int i) {
         return positions[i];
+    }
+
+    public int getTokenCount(Color c) {
+        return (int) Arrays.stream(positions).filter(x -> x.getColor() == c).count();
     }
 
     public void addMillListener(MillListener listener) {
