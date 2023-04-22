@@ -11,3 +11,11 @@ By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Ma
 4. In your local Project Repository folder, delete the outermost ".idea" folder <br>
    This is to allow for automatic setup and configuration of the project files and dependencies
 5. Open the Project in your IDE and run the "HelloApplication Class" to run the Application
+
+#### Links to Required Downloads / Additional Info:
+- Java (Latest Version): https://www.java.com/en/download/manual.jsp
+- IDE (Intellij IDEA Recommended): https://www.jetbrains.com/idea/download/#section=windows
+- JavaFX: https://gluonhq.com/products/javafx/
+- SceneBuilder: https://gluonhq.com/products/scene-builder/
+- Guide to Downloading / Cloning a repository: https://docs.gitlab.com/ee/user/project/repository/
+---
