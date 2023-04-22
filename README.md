@@ -42,24 +42,3 @@ The goal is to position your tokens well so that it sets you up for success in t
 Players take turns moving their tokens along the lines on the board.
 When a player forms a mill (three (3) tokens in a row), he/she removes one of the opponent's tokens from the board. <br>
 The Mid-Game Phase ends when a player is reduced to only three (3) tokens on the board <br>
-1. Player 1 (White) selects his/her token on the board
-2. Player 1 (White) selects a valid move for their token to move to
-3. Player 2 (Black) selects his/her token on the board
-4. Player 2 (Black) selects a valid move for their token to move to
-5. The cycle repeats
-6. If an invalid move is made, the player has to re-select a token again (from Step 1)
-
-*Forming Mills:*
-1. Player 1 (White) places moves a token that forms a mill
-2. Player 1 (White) selects an opponents token to remove (Black)
-3. Player 2's (Black) turn to move
-4. The cycle repeats
-
-**End-Game Phase** <br>
-Players who are reduced to only three (3) tokens can jump a token to any vacant position on the board. <br>
-The game ends when a player is reduced to only two (2) tokens or is unable to move. <br>
-The opposing player is then declared as the winner. <br>
-1. Player 1 (White) creates a mill and removes an opponent's token
-2. Player 2 (Black) is reduced to two tokens - the game ends
-3. Player 1 (White) wins
----
