@@ -14,7 +14,7 @@
             <Image url="@board.png" />
          </image>
       </ImageView>
-      <Label fx:id="turnIndicatorText" layoutX="205.0" layoutY="479.0" text="Player x turn">
+      <Label fx:id="turnIndicatorText" layoutX="205.0" layoutY="479.0" text="Player 1 turn">
          <font>
             <Font size="33.0" />
          </font>

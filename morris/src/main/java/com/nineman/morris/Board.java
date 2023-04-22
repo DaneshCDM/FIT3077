@@ -10,8 +10,7 @@ import java.util.List;
 public class Board implements Iterable<Position> {
     private final Position[] positions;
     private List<MillListener> listeners;
-    private static final int MAX_TOKENS = 18;
-    private int tokensLeft;
+    private int currentTurn;
 
     public Board() {
         positions = new Position[24];
@@ -29,7 +28,7 @@ public class Board implements Iterable<Position> {
         connectVertical(positions[8], positions[12], positions[17]);
         connectVertical(positions[5], positions[13], positions[20]);
         connectVertical(positions[2], positions[14], positions[23]);
-        this.tokensLeft = MAX_TOKENS;
+        this.currentTurn = 1;
         this.listeners = new ArrayList<>();
     }
 
@@ -45,21 +44,6 @@ public class Board implements Iterable<Position> {
         middle.setPositionUp(up);
         middle.setPositionDown(down);
         down.setPositionUp(middle);
-    }
-
-    /** You can only place tokens on an empty position. Return value indicates if placement
-     * is successful. */
-    public boolean placeToken(int position, Color color) {
-        if (positions[position].getColor() != null) {
-            return false;
-        }
-        Position pos = positions[position];
-        pos.setColor(color);
-        tokensLeft -= 1;
-        if (isPartOfMill(positions[position], color)) {
-            notifyMillListener();
-        }
-        return true;
     }
 
     public boolean isPartOfMill(Position i, Color color) {
@@ -94,16 +78,24 @@ public class Board implements Iterable<Position> {
         }
     }
 
+    /** You can only place tokens on an empty position. Return value indicates if placement
+     * is successful. */
+    public boolean placeToken(int position, Color color) {
+        if (positions[position].getColor() != null) {
+            return false;
+        }
+        Position pos = positions[position];
+        pos.setColor(color);
+        currentTurn += 1;
+        if (isPartOfMill(positions[position], color)) {
+            notifyMillListener();
+        }
+        return true;
+    }
+
     public boolean moveToken(int from, int destination) {
-        Color fromTokenColor = positions[from].getColor();
-        Color destinationTokenColor = positions[destination].getColor();
-        if (fromTokenColor != null && destinationTokenColor == null && positions[from].adjacent(positions[destination])) {
-            positions[from].setColor(null);
-            positions[destination].setColor(fromTokenColor);
-            if (isPartOfMill(positions[destination], fromTokenColor)) {
-                notifyMillListener();
-            }
-            return true;
+        if (positions[from].adjacent(positions[destination])) {
+            return jumpToken(from, destination);
         } else {
             return false;
         }
@@ -114,11 +106,7 @@ public class Board implements Iterable<Position> {
         Color destinationTokenColor = positions[destination].getColor();
         if (fromTokenColor != null && destinationTokenColor == null) {
             positions[from].setColor(null);
-            positions[destination].setColor(fromTokenColor);
-            if (isPartOfMill(positions[destination], fromTokenColor)) {
-                notifyMillListener();
-            }
-            return true;
+            return placeToken(destination, fromTokenColor);
         } else {
             return false;
         }
@@ -134,12 +122,8 @@ public class Board implements Iterable<Position> {
         return true;
     }
 
-    public int getTokensLeft() {
-        return tokensLeft;
-    }
-
     public boolean allTokensPlaced() {
-        return tokensLeft == 0;
+        return currentTurn > 18;
     }
 
     public Position getPositions(int i) {
@@ -155,7 +139,7 @@ public class Board implements Iterable<Position> {
     }
 
     public void notifyMillListener() {
-        listeners.forEach(x -> x.onMillFormed());
+        listeners.forEach(MillListener::onMillFormed);
     }
 
     @NotNull
