@@ -1,8 +1,10 @@
 package com.nineman.morris;
 
+import com.nineman.morris.actions.InputSource;
+
 public class Player {
 
-    private final GameController source;
+    private final InputSource source;
     public final Color color;
 
     public Player(GameController source, Color color) {
@@ -10,7 +12,7 @@ public class Player {
         this.color = color;
     }
 
-    public GameController getSource() {
+    public InputSource getSource() {
         return source;
     }
 }

@@ -109,6 +109,22 @@ public class Board implements Iterable<Position> {
         }
     }
 
+    public boolean jumpToken(int from, int destination) {
+        Color fromTokenColor = positions[from].getColor();
+        Color destinationTokenColor = positions[destination].getColor();
+        if (fromTokenColor != null && destinationTokenColor == null) {
+            positions[from].setColor(null);
+            positions[destination].setColor(fromTokenColor);
+            if (isPartOfMill(positions[destination], fromTokenColor)) {
+                notifyMillListener();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     public boolean removeToken(int position, Color color) {
         Color current = positions[position].getColor();
         if (current == null || current == color) {

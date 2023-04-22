@@ -1,11 +1,11 @@
 package com.nineman.morris;
 
+import com.nineman.morris.actions.InputSource;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
@@ -16,7 +16,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class GameController implements Initializable {
+public class GameController implements Initializable, InputSource {
     @FXML
     private Label turnIndicatorText;
     private Game game;
@@ -41,15 +41,6 @@ public class GameController implements Initializable {
         }
     }
 
-    public String getClick() {
-        try {
-            return clicks.take();
-
-        } catch (InterruptedException e) {
-            throw new Error("Unexpected Interrupt");
-        }
-    }
-
     public void update(Game game) {
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node tokenView = positions.getChildren().get(i);
@@ -63,14 +54,14 @@ public class GameController implements Initializable {
     }
 
     @FXML private Pane positions;
-    /* To delete */
-    @FXML private ImageView position0;
-    @FXML private ImageView position1;
-    @FXML private ImageView position2;
-    @FXML private ImageView position3;
-    @FXML private ImageView position4;
-    @FXML private ImageView position5;
-    @FXML private ImageView position6;
-    @FXML private ImageView position7;
-    @FXML private ImageView position8;
+
+    @Override
+    public String getInput() {
+        try {
+            return clicks.take();
+
+        } catch (InterruptedException e) {
+            throw new Error("Unexpected Interrupt");
+        }
+    }
 }
