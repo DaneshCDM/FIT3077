@@ -2,9 +2,6 @@ package com.nineman.morris;
 
 import com.nineman.morris.actions.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Game implements MillListener {
 
     private Board board;
@@ -14,7 +11,7 @@ public class Game implements MillListener {
     private boolean lockPlayerTurn;
     private Action nextAction;
 
-    public Game(GameController source) {
+    public Game(InputSource source) {
         this.board = new Board();
         this.player1 = new Player(source, Color.WHITE); // Assumes player 1 is white
         this.player2 = new Player(source, Color.BLACK);

@@ -12,25 +12,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloController {
-    @FXML
-    private Label welcomeText;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML
     protected void switchToGameScene(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game-scene.fxml"));
-        root = fxmlLoader.load();
+        Parent root = fxmlLoader.load();
         String css = getClass().getResource("game.css").toExternalForm();
         root.getStylesheets().add(css);
-        scene = new Scene(root);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }

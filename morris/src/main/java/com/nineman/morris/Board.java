@@ -148,17 +148,4 @@ public class Board implements Iterable<Position> {
         return Arrays.stream(positions).iterator();
     }
 
-    public class Mill {
-        final Position pos1;
-        final Position pos2;
-        final Position pos3;
-        public Mill(Position pos1, Position pos2, Position pos3) {
-            this.pos1 = pos1;
-            this.pos2 = pos2;
-            this.pos3 = pos3;
-        }
-        List<Position> getMillPositions() {
-            return List.of(pos1, pos2, pos3);
-        }
-    }
 }
