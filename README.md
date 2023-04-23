@@ -4,6 +4,10 @@ By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Ma
 ---
 
 ## Setup Guide
+To run the project, the user can either build an executable or just run `???.exe` in the repository.
+
+
+### Build the executable
 1. Download and install **Java** and a suitable **IDE** on your system
 2. Download and install **JavaFX** and **SceneBuilder** on your system
 3. Download or Clone the Project Repository <br>
@@ -23,43 +27,92 @@ By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Ma
 ## Game Instructions
 **Updated to: Sprint Two Implementation**
 
-***Game Objective:** <br>
-The game ends and you are the WINNER when you have reduced your opponent to only
-two (2) tokens or when the opponent can no longer make any valid moves on the board. <br>
-This is achieved by trying to create "mills" (three (3) tokens in a row) to remove the opponents tokens from the board
-while preventing the opponent from doing the same.*
+**Current State of implementation:**
+1. Player is able to place, move, and jump tokens across various stages of the game.
+   1. To place a token, click on any empty position. 
+   2. To move a token, click on 1 of your token, then the adjacent empty position that you want to move.
+      1. If an invalid token is pressed anytime in the process
+      (e.g. Selecting opposing token color to move/ Move to occupied position)
+      the initial token to move has to be reselected again.
+   3. To jumo a token, click on 1 of your token, then any empty position that you want to move.
+      1. If an invalid token is pressed anytime in the process
+         (e.g. Selecting opposing token color to move/ Move to occupied position)
+         the initial token to jump has to be reselected again.
+3. When a mill is formed, the player can remove **any** another player's token. The turn indicator will not 
+alternate the player's turn yet.
 
-**Initial Phase:** <br>
-Each player takes turns placing nine (9) of their own respective tokens on the board. <br>
-Players can only place their tokens on vacant / empty positions on the board. <br>
-The goal is to position your tokens well so that it sets you up for success in the upcoming phases. <br>
-*Click a vacant location on the board when the display shows it is your turn*
-1. Player 1 (White) places a token
-2. Player 2 (Black) places a token
-3. The cycle repeats until both players have nine (9) tokens each on the board
+[//]: # (***Game Objective:** <br>)
 
-**Mid-Game Phase** <br>
-Players take turns moving their tokens along the lines on the board.
-When a player forms a mill (three (3) tokens in a row), he/she removes one of the opponent's tokens from the board. <br>
-The Mid-Game Phase ends when a player is reduced to only three (3) tokens on the board <br>
-1. Player 1 (White) selects his/her token on the board
-2. Player 1 (White) selects a valid move for their token to move to
-3. Player 2 (Black) selects his/her token on the board
-4. Player 2 (Black) selects a valid move for their token to move to
-5. The cycle repeats
-6. If an invalid move is made, the player has to re-select a token again (from Step 1)
+[//]: # (The game ends and you are the WINNER when you have reduced your opponent to only)
 
-*Forming Mills:*
-1. Player 1 (White) places moves a token that forms a mill
-2. Player 1 (White) selects an opponents token to remove (Black)
-3. Player 2's (Black) turn to move
-4. The cycle repeats
+[//]: # (two &#40;2&#41; tokens or when the opponent can no longer make any valid moves on the board. <br>)
 
-**End-Game Phase** <br>
-Players who are reduced to only three (3) tokens can jump a token to any vacant position on the board. <br>
-The game ends when a player is reduced to only two (2) tokens or is unable to move. <br>
-The opposing player is then declared as the winner. <br>
-1. Player 1 (White) creates a mill and removes an opponent's token
-2. Player 2 (Black) is reduced to two tokens - the game ends
-3. Player 1 (White) wins
----
+[//]: # (This is achieved by trying to create "mills" &#40;three &#40;3&#41; tokens in a row&#41; to remove the opponents tokens from the board)
+
+[//]: # (while preventing the opponent from doing the same.*)
+
+[//]: # ()
+[//]: # (**Initial Phase:** <br>)
+
+[//]: # (Each player takes turns placing nine &#40;9&#41; of their own respective tokens on the board. <br>)
+
+[//]: # (Players can only place their tokens on vacant / empty positions on the board. <br>)
+
+[//]: # (The goal is to position your tokens well so that it sets you up for success in the upcoming phases. <br>)
+
+[//]: # (*Click a vacant location on the board when the display shows it is your turn*)
+
+[//]: # (1. Player 1 &#40;White&#41; places a token)
+
+[//]: # (2. Player 2 &#40;Black&#41; places a token)
+
+[//]: # (3. The cycle repeats until both players have nine &#40;9&#41; tokens each on the board)
+
+[//]: # ()
+[//]: # (**Mid-Game Phase** <br>)
+
+[//]: # (Players take turns moving their tokens along the lines on the board.)
+
+[//]: # (When a player forms a mill &#40;three &#40;3&#41; tokens in a row&#41;, he/she removes one of the opponent's tokens from the board. <br>)
+
+[//]: # (The Mid-Game Phase ends when a player is reduced to only three &#40;3&#41; tokens on the board <br>)
+
+[//]: # (1. Player 1 &#40;White&#41; selects his/her token on the board)
+
+[//]: # (2. Player 1 &#40;White&#41; selects a valid move for their token to move to)
+
+[//]: # (3. Player 2 &#40;Black&#41; selects his/her token on the board)
+
+[//]: # (4. Player 2 &#40;Black&#41; selects a valid move for their token to move to)
+
+[//]: # (5. The cycle repeats)
+
+[//]: # (6. If an invalid move is made, the player has to re-select a token again &#40;from Step 1&#41;)
+
+[//]: # ()
+[//]: # (*Forming Mills:*)
+
+[//]: # (1. Player 1 &#40;White&#41; places moves a token that forms a mill)
+
+[//]: # (2. Player 1 &#40;White&#41; selects an opponents token to remove &#40;Black&#41;)
+
+[//]: # (3. Player 2's &#40;Black&#41; turn to move)
+
+[//]: # (4. The cycle repeats)
+
+[//]: # ()
+[//]: # (**End-Game Phase** <br>)
+
+[//]: # (Players who are reduced to only three &#40;3&#41; tokens can jump a token to any vacant position on the board. <br>)
+
+[//]: # (The game ends when a player is reduced to only two &#40;2&#41; tokens or is unable to move. <br>)
+
+[//]: # (The opposing player is then declared as the winner. <br>)
+
+[//]: # (1. Player 1 &#40;White&#41; creates a mill and removes an opponent's token)
+
+[//]: # (2. Player 2 &#40;Black&#41; is reduced to two tokens - the game ends)
+
+[//]: # (3. Player 1 &#40;White&#41; wins)
+
+[//]: # (---)
