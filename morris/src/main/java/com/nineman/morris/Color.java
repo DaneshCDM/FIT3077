@@ -1,4 +1,4 @@
-package com.example.textfx;
+package com.nineman.morris;
 
 public enum Color {
     WHITE,
@@ -10,5 +10,4 @@ public enum Color {
     public String playerNumber() {
         return Integer.toString(ordinal() + 1);
     }
-
 }
