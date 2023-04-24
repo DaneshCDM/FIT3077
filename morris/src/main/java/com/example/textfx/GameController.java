@@ -58,16 +58,18 @@ public class GameController implements Initializable {
                         clicks.offer(strPos);
                         System.out.printf("current turn: %s\n", game.currentPlayerTurn());
 
-                        executor.execute(() -> {
-                            Game state = game.playTurn();
-                            clicks.clear();
+                        Game state = game.playTurn();
+                        clicks.clear();
 
 //                            final int positionCopy = position;
-                            Platform.runLater(() -> update(state, positionCopy));
-                            System.out.println(clicks);
-                            System.out.printf("current turn: %s\n", game.currentPlayerTurn());
-                            System.out.printf("%s clicked%n", strPos);
-                        });});
+                        Platform.runLater(() -> update(state, positionCopy));
+                        System.out.println(clicks);
+                        System.out.printf("current turn: %s\n", game.currentPlayerTurn());
+                        System.out.printf("%s clicked%n", strPos);
+//                        executor.execute(() -> {
+//
+//                        });
+                    });
 
 
 
@@ -137,17 +139,18 @@ public class GameController implements Initializable {
                     unusedPiece.setOnMouseClicked(mouseEvent -> {
                         clicks.offer(strPos);
                         System.out.printf("current turn: %s\n", game.currentPlayerTurn());
-
-                        executor.execute(() -> {
-                            Game state = game.playTurn();
-                            clicks.clear();
+                        Game state = game.playTurn();
+                        clicks.clear();
 
 //                            final int positionCopy = position;
-                            Platform.runLater(() -> update(state, positionCopy));
-                            System.out.println(clicks);
-                            System.out.printf("current turn: %s\n", game.currentPlayerTurn());
-                            System.out.printf("%s clicked%n", strPos);
-                        });});
+                        Platform.runLater(() -> update(state, positionCopy));
+                        System.out.println(clicks);
+                        System.out.printf("current turn: %s\n", game.currentPlayerTurn());
+                        System.out.printf("%s clicked%n", strPos);
+//                        executor.execute(() -> {
+//
+//                        });
+                    });
 
                     // Remove the used Ellipse from the unused pieces array
                     for (int i = 0; i < unusedPieces.length; i++) {
@@ -177,7 +180,7 @@ public class GameController implements Initializable {
                     System.out.println(currentPiece.getUserData());
 
                 }
-                if (currentPiece != null && currentPiece.getUserData().equals(String.valueOf(position))) {
+                if (currentPiece != null && currentPiece.getUserData().equals(String.valueOf(position+1))) {
                     // Remove the Ellipse from the game board
 //                    currentPiece.setVisible(false);
                     System.out.println("correct piece detected");
