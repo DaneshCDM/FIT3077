@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class Board {
+public class Board implements Iterable{
     private Position positions[];
 
     //Number of tokens for the game
@@ -44,6 +44,17 @@ public class Board {
     public int getTokensLeft() {
         return tokensLeft;
     }
+
+    public Position getPositions(int i) {
+        return positions[i];
+    }
+
+    @NotNull
+    @Override
+    public Iterator iterator() {
+        return Arrays.stream(positions).iterator();
+    }
+
 
 
 }
