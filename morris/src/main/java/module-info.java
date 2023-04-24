@@ -1,15 +1,16 @@
-module com.nineman.morris {
+module com.example.textfx {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.web;
 
-    requires net.synedra.validatorfx;
+    requires org.controlsfx.controls;
+    requires com.dlsc.formsfx;
+    requires validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires com.almasb.fxgl.all;
-    requires annotations;
+    requires eu.hansolo.tilesfx;
+    requires org.jetbrains.annotations;
 
-    opens com.nineman.morris to javafx.fxml;
-    exports com.nineman.morris;
-    exports com.nineman.morris.actions;
-    opens com.nineman.morris.actions to javafx.fxml;
+    opens com.example.textfx to javafx.fxml;
+    exports com.example.textfx;
 }

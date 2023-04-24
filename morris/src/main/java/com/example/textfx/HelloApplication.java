@@ -1,11 +1,17 @@
-package com.nineman.morris;
+package com.example.textfx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static javafx.scene.paint.Color.*;
 
 public class HelloApplication extends Application {
     @Override
@@ -15,15 +21,10 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {
-        launch();
-    }
-
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        System.exit(0);
+        launch(args);
     }
 }
