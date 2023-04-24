@@ -7,10 +7,10 @@ import com.example.textfx.Player;
 public class PlaceTokenAction implements Action {
 
     @Override
-    public void execute(Player player, Board board, int position) {
+    public boolean execute(Player player, Board board, int position) {
         GameController controller = player.getSource();
 //        int position = Integer.parseInt(controller.getClick());
-        board.placeToken(player.color, position);
+        return board.placeToken(player.color, position);
 
     }
 }

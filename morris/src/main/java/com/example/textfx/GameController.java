@@ -2,11 +2,9 @@ package com.example.textfx;
 
 import javafx.application.Platform;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
@@ -17,7 +15,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,14 +23,6 @@ import java.util.concurrent.Executors;
 public class GameController implements Initializable {
         @FXML
         private Rectangle turnIndicatorText;
-        @FXML
-        private Circle position0;
-        @FXML
-        private Circle position1;
-        @FXML
-        private Circle position2;
-        @FXML
-        private Circle position3;
 
         @FXML
         private Pane anchorPane;
@@ -70,7 +59,7 @@ public class GameController implements Initializable {
                         System.out.printf("current turn: %s\n", game.currentPlayerTurn());
 
                         executor.execute(() -> {
-                            Game state = game.playGame();
+                            Game state = game.playTurn();
 //                            final int positionCopy = position;
                             Platform.runLater(() -> update(state, positionCopy));
                             System.out.println(clicks);

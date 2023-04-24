@@ -48,5 +48,22 @@ public class Position {
     public Color getColor() {
         return color;
     }
+
+    public Position left() {
+        return positionLeft;
+    }
+
+    public Position right() {
+        return positionRight;
+    }
+
+    public Position up() {
+        return positionUp;
+    }
+
+    public Position down() {
+        return positionDown;
+    }
+
 }
 

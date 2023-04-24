@@ -119,7 +119,7 @@
 
       <Circle fx:id="position21" fill="#d4ff1f" layoutX="492.0" layoutY="386.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
 
-              <Rectangle arcHeight="5.0" arcWidth="5.0" height="328.0" layoutX="563.0" layoutY="65.0" stroke="#e7e3e3" strokeType="INSIDE" width="52.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="328.0" layoutX="563.0" layoutY="65.0" stroke="#e7e3e3" strokeType="INSIDE" width="52.0" />
               <Rectangle fx:id="turnIndicatorText" arcHeight="5.0" arcWidth="5.0" fill="#b2bac1" height="328.0" layoutX="312.0" layoutY="317.0" rotate="90.0" stroke="#e7e3e3" strokeType="INSIDE" width="52.0" />
       <Ellipse fill="WHITE" layoutX="590.0" layoutY="364.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
       <Ellipse fill="WHITE" layoutX="590.0" layoutY="323.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />

@@ -7,8 +7,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class Board implements Iterable{
+public class Board implements Iterable<Position>{
     private Position positions[];
+
+    private List<MillListener> listeners = List.of();
+
 
     //Number of tokens for the game
     private static final int MAX_TOKENS = 4;
@@ -44,9 +47,38 @@ public class Board implements Iterable{
         down.setPositionUp(middle);
     }
 
-    public void detectMill() {
-        // todo
+    public boolean detectMill(Position i, Color color) {
+        return detectHorizontalMill(i, color) || detectVerticalMill(i, color);
     }
+
+    public boolean detectHorizontalMill(Position pos, Color color) {
+        Position left = pos.left();
+        Position right = pos.right();
+        if (left != null && right != null) {
+            Color[] values = {left.getColor(), pos.getColor(), right.getColor()};
+            return Arrays.stream(values).allMatch(x -> x == color);
+        } else if (left == null){
+            return detectHorizontalMill(right, color);
+        } else {
+            return detectHorizontalMill(left, color);
+        }
+    }
+
+    /** Detects if a mill is formed vertically by color at input Position */
+    public boolean detectVerticalMill(Position pos, Color color) {
+        Position up = pos.up();
+        Position down = pos.down();
+        if (up != null && down != null) {
+            Color[] values = {up.getColor(), pos.getColor(), down.getColor()};
+            return Arrays.stream(values).allMatch(x -> x == color);
+        } else if (up == null){
+            return detectVerticalMill(down, color);
+        } else {
+            return detectVerticalMill(up, color);
+        }
+    }
+
+
 
 
     private void connectHorizontal(Position left, Position middle, Position right) {
@@ -56,9 +88,13 @@ public class Board implements Iterable{
         right.setPositionLeft(middle);
     }
 
-    public void placeToken(Color color, int position) {
+    public boolean placeToken(Color color, int position) {
+        if (positions[position].getOccupied() != false) {
+            return false;
+        }
         positions[position].setColor(color);
         tokensLeft -= 1;
+        return true;
     }
 
     public void removeToken(int position) {
@@ -84,6 +120,27 @@ public class Board implements Iterable{
         return Arrays.stream(positions).iterator();
     }
 
+    public interface MillListener {
 
+        /** Returns the positions where the mill is formed*/
+        void onMillFormed(Mill mill);
+    }
 
+    public class Mill {
+        final Position pos1;
+        final Position pos2;
+        final Position pos3;
+        public Mill(Position pos1, Position pos2, Position pos3) {
+            this.pos1 = pos1;
+            this.pos2 = pos2;
+            this.pos3 = pos3;
+        }
+        List<Position> getMillPositions() {
+            return List.of(pos1, pos2, pos3);
+        }
+    }
 }
+
+
+
+

@@ -3,10 +3,9 @@ package com.example.textfx;
 import com.example.textfx.actions.Action;
 import com.example.textfx.actions.MoveTokenAction;
 import com.example.textfx.actions.PlaceTokenAction;
-import javafx.stage.Stage;
 
 
-public class  Game {
+public class  Game implements Board.MillListener {
 
     private Board board;
     //Create two players each for black and white
@@ -33,10 +32,14 @@ public class  Game {
 
     //main play game function
     // gets the p
-    public Game playGame() {
+    public Game playTurn() {
         int position = Integer.parseInt(view.getClick());
-        Action moveType = new PlaceTokenAction();
-        moveType.execute(currentPlayerTurn, board, position);
+        boolean status = gameStage.action.execute(currentPlayerTurn, board, position);
+
+        if (!status) {
+            return this; // terminate early, find a better way to do this?
+        }
+
         this.currentPlayerTurn = this.currentPlayerTurn == player1 ? player2 : player1;
 
         if (noTokensLeft()) {
@@ -46,6 +49,12 @@ public class  Game {
 
 
     }
+
+    @Override
+    public void onMillFormed(Board.Mill mill) {
+
+    }
+
 
     public Color currentPlayerTurn() {
         return currentPlayerTurn.color == Color.WHITE ? Color.WHITE : Color.BLACK;

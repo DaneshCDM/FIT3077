@@ -5,5 +5,5 @@ import com.example.textfx.Player;
 
 public interface Action {
 
-    void execute(Player player, Board board, int position);
+    boolean execute(Player player, Board board, int position);
 }
