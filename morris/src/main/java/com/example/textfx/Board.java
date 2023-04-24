@@ -14,7 +14,7 @@ public class Board implements Iterable<Position>{
 
 
     //Number of tokens for the game
-    private static final int MAX_TOKENS = 4;
+    private static final int MAX_TOKENS = 12;
     private int tokensLeft;
 
 
@@ -45,10 +45,6 @@ public class Board implements Iterable<Position>{
         middle.setPositionUp(up);
         middle.setPositionDown(down);
         down.setPositionUp(middle);
-    }
-
-    public boolean detectMill(Position i, Color color) {
-        return detectHorizontalMill(i, color) || detectVerticalMill(i, color);
     }
 
     public boolean detectHorizontalMill(Position pos, Color color) {
@@ -92,26 +88,70 @@ public class Board implements Iterable<Position>{
         if (positions[position].getOccupied() != false) {
             return false;
         }
-        positions[position].setColor(color);
+        Position pos = positions[position];
+        pos.setColor(color);
         tokensLeft -= 1;
+        if (isPartOfMill(positions[position], color)) {
+            notifyMillListener(getMill(pos));
+        }
         return true;
+
     }
 
-    public void removeToken(int position) {
-        positions[position].setOccupied(false);
+    public Mill getMill(Position pos) {
+        return null;
+//        if (detectHorizontalMill(pos, pos.getColor())) {
+//            return new Mill(pos.left())
+//        }
+    }
+
+    public boolean isPartOfMill(Position i, Color color) {
+        return detectHorizontalMill(i, color) || detectVerticalMill(i, color);
     }
 
 
-    /**
-     * This function returns the number of tokens left in the game
-     * @return tokensLeft
-     */
+    public boolean moveToken(int from, int destination) {
+        Position fromToken = positions[from];
+        Position destinationToken = positions[destination];
+        if (fromToken.getOccupied() != false && destinationToken.getOccupied() == false  && positions[from].adjacent(positions[destination])) {
+            //Todo
+//            positions[from].;
+//            positions[destination].setColor(fromTokenColor);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public boolean removeToken(int position, Color color) {
+        Color current = positions[position].getColor();
+        if (current == null || current == color.invert()) {
+            return false;
+        }
+        positions[position].setColor(null);
+        return true;}
+
+
+
+        /**
+         * This function returns the number of tokens left in the game
+         * @return tokensLeft
+         */
     public int getTokensLeft() {
         return tokensLeft;
     }
 
     public Position getPositions(int i) {
         return positions[i];
+    }
+
+    public void addMillListener(MillListener listener) {
+        listeners.add(listener);
+    }
+
+    public void notifyMillListener(Mill mill) {
+        listeners.forEach(x -> x.onMillFormed(mill));
     }
 
     @NotNull

@@ -60,6 +60,8 @@ public class GameController implements Initializable {
 
                         executor.execute(() -> {
                             Game state = game.playTurn();
+                            clicks.clear();
+
 //                            final int positionCopy = position;
                             Platform.runLater(() -> update(state, positionCopy));
                             System.out.println(clicks);

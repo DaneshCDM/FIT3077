@@ -9,6 +9,14 @@ public class Position {
     private Position positionUp;
     private Position positionDown;
 
+    public boolean adjacent(Position pos) {
+        if (pos == null) {
+            return false;
+        }
+        return pos == positionLeft || pos == positionRight || pos == positionUp || pos == positionDown;
+    }
+
+
     public Boolean getOccupied() {
         return isOccupied;
     }

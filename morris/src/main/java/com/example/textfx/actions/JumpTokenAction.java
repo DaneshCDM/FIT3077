@@ -10,9 +10,13 @@ public class JumpTokenAction implements Action {
         GameController controller = player.getSource();
         int position1, position2;
         position1 = Integer.parseInt(controller.getClick());
+        if ((board.getPositions(position1).getColor() != player.color)) {
+            return false;
+        }
+
         position2 = Integer.parseInt(controller.getClick());
-        board.removeToken(position1);
-        return board.placeToken(player.color, position2);
+        return board.moveToken(position1, position2);
+
     }
 }
 
