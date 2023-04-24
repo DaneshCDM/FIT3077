@@ -2,5 +2,13 @@ package com.example.textfx;
 
 public enum Color {
     WHITE,
-    BLACK
+    BLACK;
+    Color invert() {
+        return values()[(ordinal() + 1) % values().length];
+    }
+
+    public String playerNumber() {
+        return Integer.toString(ordinal() + 1);
+    }
+
 }

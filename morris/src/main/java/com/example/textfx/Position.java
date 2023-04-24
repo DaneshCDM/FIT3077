@@ -9,6 +9,16 @@ public class Position {
     private Position positionUp;
     private Position positionDown;
 
+    public Boolean getOccupied() {
+        return isOccupied;
+    }
+
+    public void setOccupied(Boolean occupied) {
+        isOccupied = occupied;
+    }
+
+    private Boolean isOccupied = false;
+
     //used to provide position data on to the left on the current postion
     public void setPositionLeft(Position positionLeft) {
         this.positionLeft = positionLeft;

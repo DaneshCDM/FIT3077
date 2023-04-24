@@ -2,6 +2,7 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
@@ -72,7 +73,7 @@
 <!--   </children>-->
 <!--</AnchorPane>-->
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.textfx.GameController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.textfx.GameController">
     <children>
               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5b401f" height="368.0" layoutX="155.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="369.0" />
               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b2bac1" height="328.0" layoutX="46.0" layoutY="65.0" stroke="#e7e3e3" strokeType="INSIDE" width="52.0" />
@@ -82,10 +83,7 @@
               <Line endX="84.60003662109375" endY="4.76837158203125E-6" layoutX="155.0" layoutY="231.0" rotate="-90.0" startX="177.60003662109375" startY="-8.7738037109375E-4" strokeWidth="6.0" />
               <Line endX="70.71383666992188" endY="4.76837158203125E-6" layoutX="210.0" layoutY="130.0" rotate="90.0" startX="177.60003662109375" startY="-8.7738037109375E-4" strokeWidth="6.0" />
               <Line endX="70.71383666992188" endY="4.76837158203125E-6" layoutX="210.0" layoutY="332.0" rotate="90.0" startX="177.60003662109375" startY="-8.7738037109375E-4" strokeWidth="6.0" />
-              <Circle fill="#d4ff1f" layoutX="383.0" layoutY="277.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="381.0" layoutY="184.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="287.0" layoutY="183.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="288.0" layoutY="276.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+
               <Line endX="70.71383666992188" endY="4.76837158203125E-6" layoutX="312.0" layoutY="233.0" startX="177.60003662109375" startY="-8.7738037109375E-4" strokeWidth="6.0" />
               <Line endX="70.71383666992188" endY="4.76837158203125E-6" layoutX="109.0" layoutY="234.0" startX="177.60003662109375" startY="-8.7738037109375E-4" strokeWidth="6.0" />
               <Line endX="24.799972534179688" layoutX="215.0" layoutY="324.0" startX="213.60003662109375" strokeWidth="6.0" />
@@ -96,42 +94,48 @@
               <Line endX="-17.599990844726562" endY="-3.0517578125E-5" layoutX="197.0" layoutY="74.0" startX="294.4000244140625" startY="-3.0517578125E-5" strokeWidth="6.0" />
               <Line endX="-17.599990844726562" endY="-3.0517578125E-5" layoutX="41.0" layoutY="230.0" rotate="90.0" startX="294.4000244140625" startY="-3.0517578125E-5" strokeWidth="6.0" />
               <Line endX="-17.599990844726562" endY="-3.0517578125E-5" layoutX="354.0" layoutY="230.0" rotate="90.0" startX="294.4000244140625" startY="-3.0517578125E-5" strokeWidth="6.0" />
-              <Circle fill="#d4ff1f" layoutX="426.0" layoutY="321.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="333.0" layoutY="324.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="239.0" layoutY="324.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="239.0" layoutY="234.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="239.0" layoutY="134.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="335.0" layoutY="134.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="429.0" layoutY="134.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="429.0" layoutY="234.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="335.0" layoutY="184.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="335.0" layoutY="278.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="492.0" layoutY="386.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="335.0" layoutY="386.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="182.0" layoutY="386.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="179.0" layoutY="234.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="492.0" layoutY="233.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="position2" fill="#d4ff1f" layoutX="492.0" layoutY="74.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="position1" fill="#d4ff1f" layoutX="334.0" layoutY="73.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fill="#d4ff1f" layoutX="179.0" layoutY="74.0" onDragDetected="#position0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece1" layoutX="72.0" layoutY="130.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece11" layoutX="72.0" layoutY="167.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece111" layoutX="72.0" layoutY="205.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece1111" layoutX="72.0" layoutY="243.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece11111" layoutX="72.0" layoutY="281.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece111111" layoutX="72.0" layoutY="321.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece12" layoutX="72.0" layoutY="94.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece1111111" layoutX="72.0" layoutY="364.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position0" fill="#d4ff1f" layoutX="179.0" layoutY="74.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position1" fill="#d4ff1f" layoutX="334.0" layoutY="73.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position2" fill="#d4ff1f" layoutX="492.0" layoutY="74.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position3" fill="#d4ff1f" layoutX="239.0" layoutY="134.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position4" fill="#d4ff1f" layoutX="335.0" layoutY="134.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position5" fill="#d4ff1f" layoutX="429.0" layoutY="134.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position6" fill="#d4ff1f" layoutX="287.0" layoutY="183.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position7" fill="#d4ff1f" layoutX="335.0" layoutY="184.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position8" fill="#d4ff1f" layoutX="381.0" layoutY="184.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position9" fill="#d4ff1f" layoutX="179.0" layoutY="234.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position10" fill="#d4ff1f" layoutX="239.0" layoutY="234.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position11" fill="#d4ff1f" layoutX="429.0" layoutY="234.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position12" fill="#d4ff1f" layoutX="492.0" layoutY="233.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position13" fill="#d4ff1f" layoutX="288.0" layoutY="276.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position14" fill="#d4ff1f" layoutX="335.0" layoutY="278.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position15" fill="#d4ff1f" layoutX="383.0" layoutY="277.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position16" fill="#d4ff1f" layoutX="239.0" layoutY="324.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position17" fill="#d4ff1f" layoutX="333.0" layoutY="324.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+
+      <Circle fx:id="position18" fill="#d4ff1f" layoutX="426.0" layoutY="321.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position19" fill="#d4ff1f" layoutX="182.0" layoutY="386.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="position20" fill="#d4ff1f" layoutX="335.0" layoutY="386.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+
+      <Circle fx:id="position21" fill="#d4ff1f" layoutX="492.0" layoutY="386.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+
               <Rectangle arcHeight="5.0" arcWidth="5.0" height="328.0" layoutX="563.0" layoutY="65.0" stroke="#e7e3e3" strokeType="INSIDE" width="52.0" />
-              <Circle fx:id="whitePiece13" fill="#eaeaea" layoutX="589.0" layoutY="130.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece112" fill="WHITE" layoutX="589.0" layoutY="167.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece1112" fill="WHITE" layoutX="589.0" layoutY="205.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece11112" fill="WHITE" layoutX="589.0" layoutY="243.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece111112" fill="WHITE" layoutX="589.0" layoutY="282.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece1111112" fill="WHITE" layoutX="590.0" layoutY="322.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece121" fill="#f4f4f4" layoutX="589.0" layoutY="94.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Circle fx:id="whitePiece11111111" fill="#f2f2f2" layoutX="589.0" layoutY="364.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b2bac1" height="328.0" layoutX="312.0" layoutY="317.0" rotate="90.0" stroke="#e7e3e3" strokeType="INSIDE" width="52.0" />
+              <Rectangle fx:id="turnIndicatorText" arcHeight="5.0" arcWidth="5.0" fill="#b2bac1" height="328.0" layoutX="312.0" layoutY="317.0" rotate="90.0" stroke="#e7e3e3" strokeType="INSIDE" width="52.0" />
+      <Ellipse fill="WHITE" layoutX="590.0" layoutY="364.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="590.0" layoutY="323.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="590.0" layoutY="278.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="589.0" layoutY="237.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="589.0" layoutY="194.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="WHITE" layoutX="589.0" layoutY="150.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fx:id="whitePiece1" fill="WHITE" layoutX="590.0" layoutY="111.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="BLACK" layoutX="72.0" layoutY="364.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="BLACK" layoutX="72.0" layoutY="326.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="BLACK" layoutX="72.0" layoutY="282.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="BLACK" layoutX="72.0" layoutY="237.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="BLACK" layoutX="72.0" layoutY="201.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="BLACK" layoutX="72.0" layoutY="167.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="BLACK" layoutX="72.0" layoutY="131.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
+      <Ellipse fill="BLACK" layoutX="72.0" layoutY="94.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
 
 
     </children>

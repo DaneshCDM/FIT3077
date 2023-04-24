@@ -10,6 +10,7 @@ module com.example.textfx {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires org.jetbrains.annotations;
+    requires com.almasb.fxgl.core;
 
     opens com.example.textfx to javafx.fxml;
     exports com.example.textfx;
