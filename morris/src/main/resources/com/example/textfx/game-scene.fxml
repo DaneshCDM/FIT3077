@@ -134,8 +134,6 @@
       <Ellipse fill="BLACK" layoutX="72.0" layoutY="237.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
       <Ellipse fill="BLACK" layoutX="72.0" layoutY="201.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
       <Ellipse fill="BLACK" layoutX="72.0" layoutY="167.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
-      <Ellipse fill="BLACK" layoutX="72.0" layoutY="131.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
-      <Ellipse fill="BLACK" layoutX="72.0" layoutY="94.0" radiusX="17.0" radiusY="17.0" stroke="WHITE" strokeType="INSIDE" />
 
 
     </children>

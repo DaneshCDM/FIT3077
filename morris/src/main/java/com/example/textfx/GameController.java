@@ -70,22 +70,23 @@ public class GameController implements Initializable {
                         });});
 
 
+
                     } else if (child instanceof Ellipse) {
                     Ellipse ellipse = (Ellipse) child;
                     String color = ellipse.getFill().toString();
 
                     if (color.equals("0xffffffff")) { // White color
                         for (int i = 0; i < 7; i++) {
-                            if (whitePieces[i] == null) {
-                                whitePieces[i] = ellipse;
+                            if (unusedWhitePieces[i] == null) {
+//                                whitePieces[i] = ellipse;
                                 unusedWhitePieces[i] = ellipse;
                                 break;
                             }
                         }
                     } else { // Black color
                         for (int i = 0; i < 7; i++) {
-                            if (blackPieces[i] == null) {
-                                blackPieces[i] = ellipse;
+                            if (unusedBlackPieces[i] == null) {
+//                                blackPieces[i] = ellipse;
                                 unusedBlackPieces[i] = ellipse;
                                 break;
                             }
@@ -110,6 +111,7 @@ public class GameController implements Initializable {
 
     public void update(Game game, int position) {
 
+        String strPos = Integer.toString(position);
 
 
         // Get the Circle object that was clicked
@@ -119,32 +121,83 @@ public class GameController implements Initializable {
         double centerX = clickedCircle.getLayoutX();
         double centerY = clickedCircle.getLayoutY();
 
-        // Loop through all of the unused Ellipse objects of the same color as the current player
-        Ellipse[] unusedPieces = game.currentPlayerTurn() == Color.WHITE ? unusedWhitePieces : unusedBlackPieces;
-        for (Ellipse unusedPiece : unusedPieces) {
-            if (unusedPiece != null) {
-                // Move the unused Ellipse to the center position of the clicked Circle
-                unusedPiece.setLayoutX(centerX);
-                unusedPiece.setLayoutY(centerY);
-                game.getPosition(position).setOccupied(true);
-                unusedPiece.setUserData(String.valueOf(position));
+        if(!game.getBoard().shouldRemoveToken()){
+            // Loop through all of the unused Ellipse objects of the same color as the current player
+            Ellipse[] unusedPieces = game.currentPlayerTurn() == Color.WHITE ? unusedWhitePieces : unusedBlackPieces;
+            for (Ellipse unusedPiece : unusedPieces) {
+                if (unusedPiece != null) {
+                    // Move the unused Ellipse to the center position of the clicked Circle
+                    unusedPiece.setLayoutX(centerX);
+                    unusedPiece.setLayoutY(centerY);
+                    game.getPosition(position).setOccupied(true);
+                    unusedPiece.setUserData(String.valueOf(position));
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+                    final int positionCopy = position - 1;
 
-                // Remove the used Ellipse from the unused pieces array
-                for (int i = 0; i < unusedPieces.length; i++) {
-                    if (unusedPieces[i] == unusedPiece) {
-                        unusedPieces[i] = null;
-                        break;
+                    unusedPiece.setOnMouseClicked(mouseEvent -> {
+                        clicks.offer(strPos);
+                        System.out.printf("current turn: %s\n", game.currentPlayerTurn());
+
+                        executor.execute(() -> {
+                            Game state = game.playTurn();
+                            clicks.clear();
+
+//                            final int positionCopy = position;
+                            Platform.runLater(() -> update(state, positionCopy));
+                            System.out.println(clicks);
+                            System.out.printf("current turn: %s\n", game.currentPlayerTurn());
+                            System.out.printf("%s clicked%n", strPos);
+                        });});
+
+                    // Remove the used Ellipse from the unused pieces array
+                    for (int i = 0; i < unusedPieces.length; i++) {
+                        if (unusedPieces[i] == unusedPiece) {
+                            if( game.currentPlayerTurn() == Color.WHITE ){
+                                whitePieces[i] = unusedPiece;
+                            }
+                            if( game.currentPlayerTurn() == Color.BLACK ){
+                                blackPieces[i] = unusedPiece;
+                            }
+                            unusedPieces[i] = null;
+                            break;
+                        }
                     }
+                    break;
                 }
-                break;
             }
-        }
 //        turnIndicatorText.setText(String.format("Player %s Turn", game.currentPlayerTurn()));
+        }
+        else {
+            Node ellipseToRemove = null;
+            System.out.println("BADABADA");
+            Ellipse[] currentPieces = game.currentPlayerTurn() == Color.WHITE ? blackPieces : whitePieces;
+            for (Ellipse currentPiece : currentPieces) {
+                System.out.println("current position" + position);
+                if(currentPiece != null){
+                    System.out.println(currentPiece.getUserData());
+
+                }
+                if (currentPiece != null && currentPiece.getUserData().equals(String.valueOf(position))) {
+                    // Remove the Ellipse from the game board
+//                    currentPiece.setVisible(false);
+                    System.out.println("correct piece detected");
+                    anchorPane.getChildren().remove(currentPiece);
+                    game.getBoard().removeToken(position, game.currentPlayerTurn());
+                    break;
+                }
+            }
+            if (ellipseToRemove != null) {
+                anchorPane.getChildren().remove(ellipseToRemove);
+            }
+            game.getBoard().setRemoveToken(false);
+//        }
+
+
     }
 
 //    @FXML private ImageView position0;
 //    @FXML private ImageView position1;
 //    @FXML private ImageView position2;
 
-}
+}}
 
