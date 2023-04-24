@@ -1,22 +1,17 @@
 package com.example.textfx;
 
 import com.example.textfx.actions.Action;
-import com.example.textfx.actions.MoveTokenAction;
 import com.example.textfx.actions.PlaceTokenAction;
-import javafx.stage.Stage;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 
 
-public class  Game {
+public class  Game implements Observable {
 
     private Board board;
     //Create two players each for black and white
     private Player player1;
     private Player player2;
-    private Player currentPlayerTurn;
-    private GameController view;
-    private Stage gameStage;
-
-
 
 
     public Game(GameController source) {
@@ -24,61 +19,37 @@ public class  Game {
         this.player1 = new Player(source, Color.WHITE);
         this.player2 = new Player(source, Color.BLACK);
 
-        this.view = source;
-        this.currentPlayerTurn = player1; // White player goes first
-        this.gameStage = Stage.PLACE_TOKEN;
-
-
     }
 
     //main play game function
     // gets the p
-    public Game playGame() {
-        int position = Integer.parseInt(view.getClick());
+    public void playGame() {
+        Player currentPlayerTurn = player1; // White player goes first
+
         Action moveType = new PlaceTokenAction();
-        moveType.execute(currentPlayerTurn, board, position);
-        this.currentPlayerTurn = this.currentPlayerTurn == player1 ? player2 : player1;
+        while (!gameOver()) {
+//            currentPlayerTurn;
+            moveType.execute(currentPlayerTurn, board);
+            currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
 
-        if (noTokensLeft()) {
-            gameStage = gameStage.next();
         }
-        return this;
-
 
     }
-
-    public Color currentPlayerTurn() {
-        return currentPlayerTurn.color == Color.WHITE ? Color.WHITE : Color.BLACK;
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public Position getPosition(int i) {
-        return board.getPositions(i);
-    }
-
 
     /**
 
      */
-    public boolean noTokensLeft() {
+    public boolean gameOver() {
         return board.getTokensLeft() == 0;
     }
 
-    private enum Stage {
-        PLACE_TOKEN(new PlaceTokenAction()),
-        MOVE_TOKEN(new MoveTokenAction()),
-        JUMP_TOKEN(new PlaceTokenAction());
-        final Action action;
-        private static final Stage[] vals = values();
-        Stage(Action action) {
-            this.action = action;
-        }
-        public Stage next() {
-            return vals[Math.min(this.ordinal() + 1, vals.length - 1)];
-        }
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
 
     }
 
