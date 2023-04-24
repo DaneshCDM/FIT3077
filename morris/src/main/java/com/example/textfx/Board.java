@@ -31,6 +31,12 @@ public class Board {
         this.tokensLeft = MAX_TOKENS;
     }
 
+    public void placeToken(Color color, int position) {
+        positions[position].setColor(color);
+        tokensLeft -= 1;
+    }
+
+
     /**
      * This function returns the number of tokens left in the game
      * @return tokensLeft

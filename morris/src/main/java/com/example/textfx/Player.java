@@ -2,10 +2,16 @@ package com.example.textfx;
 
 public class Player {
 
-    private HelloController source;
+    private final GameController source;
+    public final Color color;
 
-    public Player(HelloController source) {
+    public Player(GameController source, Color color) {
         this.source = source;
+        this.color = color;
+    }
+
+    public GameController getSource() {
+        return source;
     }
 }
 

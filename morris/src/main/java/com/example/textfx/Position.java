@@ -2,6 +2,7 @@ package com.example.textfx;
 
 public class Position {
 
+    private Color color;
     //These variables will indicate details on the adjacent postions
     private Position positionLeft;
     private Position positionRight;
@@ -28,6 +29,14 @@ public class Position {
 
     public void setPositionDown(Position positionDown) {
         this.positionDown = positionDown;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }
 
