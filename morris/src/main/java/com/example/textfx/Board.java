@@ -24,9 +24,30 @@ public class Board implements Iterable{
         for (int i = 0; i < positions.length; i = i + 3) {
             connectHorizontal(positions[i], positions[i + 1], positions[i + 2]);
         }
+        connectVertical(positions[0], positions[9], positions[21]);
+        connectVertical(positions[3], positions[10], positions[18]);
+        connectVertical(positions[6], positions[11], positions[15]);
+        connectVertical(positions[1], positions[4], positions[7]);
+        connectVertical(positions[16], positions[19], positions[22]);
+        connectVertical(positions[8], positions[12], positions[17]);
+        connectVertical(positions[5], positions[13], positions[20]);
+        connectVertical(positions[2], positions[14], positions[23]);
+
         this.tokensLeft = MAX_TOKENS;
 
     }
+
+    private void connectVertical(Position up, Position middle, Position down) {
+        up.setPositionDown(middle);
+        middle.setPositionUp(up);
+        middle.setPositionDown(down);
+        down.setPositionUp(middle);
+    }
+
+    public void detectMill() {
+        // todo
+    }
+
 
     private void connectHorizontal(Position left, Position middle, Position right) {
         left.setPositionRight(middle);
