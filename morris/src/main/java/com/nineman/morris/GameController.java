@@ -19,13 +19,12 @@ import java.util.concurrent.Executors;
 public class GameController implements Initializable, InputSource {
     @FXML
     private Label turnIndicatorText;
-    private Game game;
     private ArrayBlockingQueue<String> clicks = new ArrayBlockingQueue<>(5);
     private final EnumMap<Color, String> COLOR_MAP = new EnumMap<>(Map.of(Color.WHITE, "wt", Color.BLACK, "bt"));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        game = new Game(this);
+        Game game = new Game(this);
         ExecutorService executor = Executors.newSingleThreadExecutor();
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node node = positions.getChildren().get(i);

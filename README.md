@@ -4,17 +4,16 @@ By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Ma
 ---
 
 ## Setup Guide
-To run the project, the user can either build an executable or just run `???.exe` in the repository.
+To run the project, the user can either build an executable or just run `morris.jar` in the repository.
 
 
 ### Build the executable
-1. Download and install **Java** and a suitable **IDE** on your system
-2. Download and install **JavaFX** and **SceneBuilder** on your system
+1. Download and install **Java** and **IntelliJ IDE** on your system.
 3. Download or Clone the Project Repository <br>
    Project Link: https://git.infotech.monash.edu/fit3077-s1-2023/MA_Friday2pm_Team5/project <br>
-4. In your local Project Repository folder, delete the outermost ".idea" folder <br>
-   This is to allow for automatic setup and configuration of the project files and dependencies
-5. Open the Project in your IDE and run the "HelloApplication Class" to run the Application
+4. In IntelliJ, navigate to the location of the cloned repository is cloned and open `project\morris\pom.xml`. Select
+`Open as Project` at the prompt.
+5. Go to `project\src\main\java\com.nineman.morris\MenuApplication.java` and run the static `main` function to launch the Application.
 
 #### Links to Required Downloads / Additional Info:
 - Java (Latest Version): https://www.java.com/en/download/manual.jsp
@@ -28,18 +27,23 @@ To run the project, the user can either build an executable or just run `???.exe
 **Updated to: Sprint Two Implementation**
 
 **Current State of implementation:**
-1. Player is able to place, move, and jump tokens across various stages of the game.
+1. Player is able to place, move, and jump tokens according to the game rules.
    1. To place a token, click on any empty position. 
    2. To move a token, click on 1 of your token, then the adjacent empty position that you want to move.
       1. If an invalid token is pressed anytime in the process
       (e.g. Selecting opposing token color to move/ Move to occupied position)
       the initial token to move has to be reselected again.
-   3. To jumo a token, click on 1 of your token, then any empty position that you want to move.
+   3. To jump a token, click on 1 of your token, then any empty position that you want to move.
       1. If an invalid token is pressed anytime in the process
          (e.g. Selecting opposing token color to move/ Move to occupied position)
          the initial token to jump has to be reselected again.
-3. When a mill is formed, the player can remove **any** another player's token. The turn indicator will not 
+3. When a mill is formed, the player can remove **any** of another player's token. The turn indicator will not 
 alternate the player's turn yet.
+
+## Not implemented yet
+1. Disable removing tokens that form a mill
+2. Game Victory Screen when one of the player has less than two tokens
+3. Better prompts so the player understand what to do without referencing `README.md`
 
 [//]: # (***Game Objective:** <br>)
 
