@@ -3,7 +3,16 @@ package com.nineman.morris.actions;
 import com.nineman.morris.Board;
 import com.nineman.morris.Player;
 
+/**
+ * The MoveTokenAction class represents an action to move a token on the board
+ */
 public class MoveTokenAction implements Action {
+    /**
+     * Executes the move token action on the provided player and board.
+     * @param player the player that is executing the action
+     * @param board the board on which the action is being executed
+     * @return true if the action was successfully executed, false otherwise
+     */
     @Override
     public boolean execute(Player player, Board board) {
         InputSource controller = player.getSource();
