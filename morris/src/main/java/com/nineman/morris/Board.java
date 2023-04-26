@@ -155,6 +155,13 @@ public class Board implements Iterable<Position> {
         }
     }
 
+    /**
+     * Jumps a token from one position to another if the destination is unoccupied.
+     *
+     * @param from the source position index
+     * @param destination the destination position index
+     * @return true if the token is jumped successfully, false otherwise
+     */
     public boolean jumpToken(int from, int destination) {
         Color fromTokenColor = positions[from].getColor();
         Color destinationTokenColor = positions[destination].getColor();
@@ -167,6 +174,13 @@ public class Board implements Iterable<Position> {
     }
 
 
+    /**
+     * Removes a token from the specified position if it belongs to the opponent.
+     *
+     * @param position the position index from which to remove the token
+     * @param color the color of the current player
+     * @return true if the token is removed successfully, false otherwise
+     */
     public boolean removeToken(int position, Color color) {
         Color current = positions[position].getColor();
         if (current == null || current == color) {
@@ -176,26 +190,56 @@ public class Board implements Iterable<Position> {
         return true;
     }
 
+    /**
+     * Checks if all tokens have been placed on the board.
+     *
+     * @return true if all tokens have been placed, false otherwise
+     */
     public boolean allTokensPlaced() {
         return currentTurn > 18;
     }
 
+    /**
+     * Gets the position at the specified index.
+     *
+     * @param i the index of the position
+     * @return the position at the specified index
+     */
     public Position getPositions(int i) {
         return positions[i];
     }
 
+    /**
+     * Returns the number of tokens with the specified color on the board.
+     *
+     * @param c the color of the tokens
+     * @return the number of tokens with the specified color
+     */
     public int getTokenCount(Color c) {
         return (int) Arrays.stream(positions).filter(x -> x.getColor() == c).count();
     }
 
+    /**
+     * Adds a mill listener to the list of listeners.
+     *
+     * @param listener the mill listener to add
+     */
     public void addMillListener(MillListener listener) {
         listeners.add(listener);
     }
 
+    /**
+     * Notifies all mill listeners when a mill is formed on the board.
+     */
     public void notifyMillListener() {
         listeners.forEach(MillListener::onMillFormed);
     }
 
+    /**
+     * Returns an iterator for the positions on the board.
+     *
+     * @return an iterator for the positions on the board
+     */
     @NotNull
     @Override
     public Iterator<Position> iterator() {
