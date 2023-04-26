@@ -1,6 +1,12 @@
 # Project: Nine Men's Morris Application
 **FIT3077 Software Engineering: Architecture and Design** <br>
 By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Mariapan
+
+### Sprint 2 Submission
+**Design Rationale**: `docs/Sprint 2/sprint2.pdf`
+
+**Git Tag:** sprint_2
+
 ---
 
 ## Setup Guide
