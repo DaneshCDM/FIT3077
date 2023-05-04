@@ -17,6 +17,8 @@ public class Board implements Iterable<Position> {
     private final Position[] positions;
     private List<BoardListener> listeners;
     private int currentTurn;
+    /** Game Over Notification only fires once */
+    private boolean gameOverNotified;
 
     /**
      * Constructs a new Nine Men's Morris game board.
@@ -40,6 +42,7 @@ public class Board implements Iterable<Position> {
         connectVertical(positions[2], positions[14], positions[23]);
         this.currentTurn = 1;
         this.listeners = new ArrayList<>();
+        this.gameOverNotified = false;
     }
 
     /**
@@ -239,11 +242,18 @@ public class Board implements Iterable<Position> {
      * Notifies all listeners game is over.
      */
     public void notifyGameOver() {
-        listeners.forEach(BoardListener::onGameOver);
+        if (!gameOverNotified) {
+            listeners.forEach(BoardListener::onGameOver);
+            gameOverNotified = true;
+        }
     }
 
     public boolean isGameOver() {
-        return allTokensPlaced() && (getTokenCount(Color.WHITE) < 3 || getTokenCount(Color.BLACK) < 3);
+        boolean result = allTokensPlaced() && (getTokenCount(Color.WHITE) < 3 || getTokenCount(Color.BLACK) < 3);
+        if (result) {
+            notifyGameOver();
+        }
+        return result;
     }
 
     /**
