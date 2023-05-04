@@ -64,6 +64,7 @@ public class GameController implements Initializable, InputSource {
      * @param game The current game state to be displayed, representing the model in the MVC architecture.
      */
     public void update(Game game) {
+
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node tokenView = positions.getChildren().get(i);
             tokenView.getStyleClass().clear();

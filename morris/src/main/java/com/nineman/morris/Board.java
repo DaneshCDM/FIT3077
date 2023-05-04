@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Board implements Iterable<Position> {
     private final Position[] positions;
-    private List<MillListener> listeners;
+    private List<BoardListener> listeners;
     private int currentTurn;
 
     /**
@@ -135,7 +135,7 @@ public class Board implements Iterable<Position> {
         pos.setColor(color);
         currentTurn += 1;
         if (isPartOfMill(positions[position], color)) {
-            notifyMillListener();
+            notifyMillFormed();
         }
         return true;
     }
@@ -220,19 +220,30 @@ public class Board implements Iterable<Position> {
     }
 
     /**
-     * Adds a mill listener to the list of listeners.
+     * Adds a listener to the list of listeners.
      *
      * @param listener the mill listener to add
      */
-    public void addMillListener(MillListener listener) {
+    public void addBoardListener(BoardListener listener) {
         listeners.add(listener);
     }
 
     /**
      * Notifies all mill listeners when a mill is formed on the board.
      */
-    public void notifyMillListener() {
-        listeners.forEach(MillListener::onMillFormed);
+    public void notifyMillFormed() {
+        listeners.forEach(BoardListener::onMillFormed);
+    }
+
+    /**
+     * Notifies all listeners game is over.
+     */
+    public void notifyGameOver() {
+        listeners.forEach(BoardListener::onGameOver);
+    }
+
+    public boolean isGameOver() {
+        return allTokensPlaced() && (getTokenCount(Color.WHITE) < 3 || getTokenCount(Color.BLACK) < 3);
     }
 
     /**

@@ -9,7 +9,7 @@ import com.nineman.morris.actions.*;
  * It has associations with the Board, Player, and Action classes, and implements the
  * MillListener interface to handle mill-related events.
  */
-public class Game implements MillListener {
+public class Game implements BoardListener {
 
     private Board board;
     private Player player1;
@@ -30,7 +30,7 @@ public class Game implements MillListener {
         this.player2 = new Player(source, Color.BLACK);
         this.currentPlayerTurn = player1; // White player goes first
         this.lockPlayerTurn = false;
-        board.addMillListener(this);
+        board.addBoardListener(this);
     }
 
     /**
@@ -41,6 +41,9 @@ public class Game implements MillListener {
      * @return the updated game state
      */
     public Game playTurn() {
+        if (board.isGameOver()) {
+            return this;
+        }
         boolean status = getPlayerMove(currentPlayerTurn).execute(currentPlayerTurn, board);
         if (status) { // Action execution failed, don't proceed the game
             nextAction = null;
