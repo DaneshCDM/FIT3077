@@ -243,7 +243,8 @@ public class Board implements Iterable<Position> {
      */
     public void notifyGameOver() {
         if (!gameOverNotified) {
-            listeners.forEach(BoardListener::onGameOver);
+            Color c = getTokenCount(Color.BLACK) == 2? Color.WHITE : Color.BLACK;
+            listeners.forEach(listener -> listener.onGameOver(c));
             gameOverNotified = true;
         }
     }

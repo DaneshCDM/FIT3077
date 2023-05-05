@@ -11,11 +11,20 @@ package com.nineman.morris;
 import com.nineman.morris.actions.InputSource;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.EnumMap;
 import java.util.Map;
@@ -24,10 +33,14 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class GameController implements Initializable, InputSource {
+public class GameController implements Initializable, InputSource, BoardListener {
+    @FXML
+    private AnchorPane gameScene;
+
     @FXML
     private Label turnIndicatorText;
     private ArrayBlockingQueue<String> clicks = new ArrayBlockingQueue<>(5);
+    private ExecutorService executor;
     private final EnumMap<Color, String> COLOR_MAP = new EnumMap<>(Map.of(Color.WHITE, "wt", Color.BLACK, "bt"));
 
     /**
@@ -40,7 +53,8 @@ public class GameController implements Initializable, InputSource {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Game game = new Game(this);
-        ExecutorService executor = Executors.newSingleThreadExecutor();
+        game.getBoard().addBoardListener(this);
+        this.executor = Executors.newSingleThreadExecutor();
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node node = positions.getChildren().get(i);
             int finalI = i;
@@ -53,6 +67,7 @@ public class GameController implements Initializable, InputSource {
                 });
             });
         }
+//        onGameOver(Color.WHITE); // backdoor game over option for debugging
     }
 
     /**
@@ -64,7 +79,6 @@ public class GameController implements Initializable, InputSource {
      * @param game The current game state to be displayed, representing the model in the MVC architecture.
      */
     public void update(Game game) {
-
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node tokenView = positions.getChildren().get(i);
             tokenView.getStyleClass().clear();
@@ -74,6 +88,29 @@ public class GameController implements Initializable, InputSource {
             tokenView.getStyleClass().add("clickable");
         }
         turnIndicatorText.setText(String.format("Player %s Turn", game.currentPlayerTurn()));
+    }
+
+    @Override
+    public void onGameOver(Color c) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Victory!");
+            alert.setHeaderText(String.format("Player %s wins!", c.playerNumber()));
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-view.fxml"));
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) gameScene.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+                executor.close();
+            }
+        });
     }
 
     @FXML private Pane positions;

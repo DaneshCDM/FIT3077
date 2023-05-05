@@ -101,9 +101,4 @@ public class Game implements BoardListener {
     public void onMillFormed() {
         lockPlayerTurn = true;
     }
-
-    @Override
-    public void onGameOver() {
-
-    }
 }
