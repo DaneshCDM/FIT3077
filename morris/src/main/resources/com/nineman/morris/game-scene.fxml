@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="gameScene" prefHeight="536.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nineman.morris.GameController">
@@ -19,6 +20,8 @@
             <Font size="33.0" />
          </font>
       </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="222.0" layoutX="15.0" layoutY="151.0" stroke="BLACK" strokeType="INSIDE" width="55.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="233.0" layoutX="521.0" layoutY="151.0" stroke="BLACK" strokeType="INSIDE" width="55.0" />
       <Pane fx:id="positions" layoutX="86.0" layoutY="58.0" prefHeight="421.0" prefWidth="421.0">
          <children>
             <ImageView fx:id="position0" fitHeight="79.0" fitWidth="67.0" layoutX="-18.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
@@ -45,6 +48,32 @@
             <ImageView fx:id="position21" fitHeight="79.0" fitWidth="67.0" layoutX="-9.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
             <ImageView fx:id="position22" fitHeight="79.0" fitWidth="67.0" layoutX="177.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
             <ImageView fx:id="position23" fitHeight="79.0" fitWidth="67.0" layoutX="367.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true" styleClass="clickable" />
+         </children>
+      </Pane>
+      <Pane fx:id="whiteTokenDisplay" layoutX="10.0" layoutY="151.0" prefHeight="233.0" prefWidth="67.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="102.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="169.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="12.0" layoutY="191.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="blackTokenDisplay" layoutX="516.0" layoutY="151.0" prefHeight="222.0" prefWidth="67.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="102.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="169.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="191.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
          </children>
       </Pane>
    </children>

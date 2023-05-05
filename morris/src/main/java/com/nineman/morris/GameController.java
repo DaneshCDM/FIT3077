@@ -88,6 +88,17 @@ public class GameController implements Initializable, InputSource, BoardListener
             tokenView.getStyleClass().add("clickable");
         }
         turnIndicatorText.setText(String.format("Player %s Turn", game.currentPlayerTurn()));
+
+        whiteTokenDisplay.getChildren().forEach(x -> x.setVisible(true));
+        blackTokenDisplay.getChildren().forEach(x -> x.setVisible(true));
+        whiteTokenDisplay.getChildren()
+                            .stream()
+                            .limit(9 - game.getBoard().whiteTokensLeft())
+                            .forEach(x -> x.setVisible(false));
+        blackTokenDisplay.getChildren()
+                            .stream()
+                            .limit(9 - game.getBoard().blackTokensLeft())
+                            .forEach(x -> x.setVisible(false));
     }
 
     @Override
@@ -114,6 +125,8 @@ public class GameController implements Initializable, InputSource, BoardListener
     }
 
     @FXML private Pane positions;
+    @FXML private Pane whiteTokenDisplay;
+    @FXML private Pane blackTokenDisplay;
 
     /**
      * Retrieves user input in the form of clicks on the game board.

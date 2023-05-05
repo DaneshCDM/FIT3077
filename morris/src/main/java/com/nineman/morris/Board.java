@@ -17,6 +17,8 @@ public class Board implements Iterable<Position> {
     private final Position[] positions;
     private List<BoardListener> listeners;
     private int currentTurn;
+    private int whiteTokensLeft;
+    private int blackTokensLeft;
     /** Game Over Notification only fires once */
     private boolean gameOverNotified;
 
@@ -41,6 +43,8 @@ public class Board implements Iterable<Position> {
         connectVertical(positions[5], positions[13], positions[20]);
         connectVertical(positions[2], positions[14], positions[23]);
         this.currentTurn = 1;
+        this.whiteTokensLeft = 9;
+        this.blackTokensLeft = 9;
         this.listeners = new ArrayList<>();
         this.gameOverNotified = false;
     }
@@ -140,6 +144,11 @@ public class Board implements Iterable<Position> {
         if (isPartOfMill(positions[position], color)) {
             notifyMillFormed();
         }
+        if (color == Color.WHITE) {
+            whiteTokensLeft -= 1;
+        } else {
+            blackTokensLeft -= 1;
+        }
         return true;
     }
 
@@ -200,6 +209,18 @@ public class Board implements Iterable<Position> {
      */
     public boolean allTokensPlaced() {
         return currentTurn > 18;
+    }
+
+    public int currentTurn() {
+        return currentTurn;
+    }
+
+    public int whiteTokensLeft() {
+        return whiteTokensLeft;
+    }
+
+    public int blackTokensLeft() {
+        return blackTokensLeft;
     }
 
     /**
