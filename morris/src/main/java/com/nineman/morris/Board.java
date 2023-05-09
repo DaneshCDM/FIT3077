@@ -195,7 +195,7 @@ public class Board implements Iterable<Position> {
      */
     public boolean removeToken(int position, Color color) {
         Color current = positions[position].getColor();
-        if (current == null || current == color) {
+        if (current == null || current == color || isPartOfMill(positions[position], color.invert())) {
             return false;
         }
         positions[position].setColor(null);
