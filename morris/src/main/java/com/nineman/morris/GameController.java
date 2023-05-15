@@ -19,8 +19,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -54,6 +56,8 @@ public class GameController implements Initializable, InputSource, BoardListener
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Game game = new Game(this);
         game.getBoard().addBoardListener(this);
+        Tooltip t = new Tooltip(getRules());
+        Tooltip.install(tutorial, t);
         this.executor = Executors.newSingleThreadExecutor();
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node node = positions.getChildren().get(i);
@@ -68,6 +72,24 @@ public class GameController implements Initializable, InputSource, BoardListener
             });
         }
 //        onGameOver(Color.WHITE); // backdoor game over option for debugging
+    }
+
+    private String getRules() {
+        return """
+                Each of the two players has 9 pieces (tokens or men) that, in turn,
+                are placed on the board on one of the empty 24 line intersections,
+                starting with an empty board. Once all 18 pieces have been placed\s
+                onto the board, players, again in turn, slide one of their pieces along
+                a board line to an empty adjacent intersection (not diagonally).
+                If a player is able to form a straight row of three pieces along one
+                of the board's lines (i.e. not diagonally), he/she has a "mill" and
+                may remove one of his/her opponent's pieces from the board that is not part
+                of a mill. This can happen either during the initial placing of the pieces
+                onto the board or the subsequent sliding of pieces along the board's lines.
+                A piece that has been removed from the board cannot be placed again and is "lost"
+                for the corresponding player. Once a player has only three pieces left, he/she
+                may jump (fly or hop) one piece per turn to an empty intersection (and hence does
+                not have to slide a piece along one of the board's lines).""";
     }
 
     /**
@@ -125,6 +147,7 @@ public class GameController implements Initializable, InputSource, BoardListener
     }
 
     @FXML private Pane positions;
+    @FXML private Node tutorial;
     @FXML private Pane whiteTokenDisplay;
     @FXML private Pane blackTokenDisplay;
 

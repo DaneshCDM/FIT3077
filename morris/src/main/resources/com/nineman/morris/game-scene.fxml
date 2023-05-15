@@ -5,8 +5,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="gameScene" prefHeight="536.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nineman.morris.GameController">
    <children>
@@ -76,5 +78,11 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="12.0" layoutY="191.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
          </children>
       </Pane>
+      <Circle fx:id="tutorial" fill="#b5b9bc" layoutX="559.0" layoutY="32.0" radius="17.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Text layoutX="554.0" layoutY="39.0" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
