@@ -33,7 +33,7 @@ Path of the form `<YOUR DIRECTORY>\Java\jdk-19\bin\javaw.exe`.
 5. Go to `project\src\main\java\com.nineman.morris\MenuApplication.java` and run the static `main` function to launch the Application.
 
 #### Links to Required Downloads / Additional Info:
-- Java (Latest Version): https://www.java.com/en/download/manual.jsp
+- Java JDK 19: https://download.oracle.com/java/19/archive/jdk-19.0.2_windows-x64_bin.exe
 - IDE (Intellij IDEA Recommended): https://www.jetbrains.com/idea/download/#section=windows
 - JavaFX: https://gluonhq.com/products/javafx/
 - SceneBuilder: https://gluonhq.com/products/scene-builder/
