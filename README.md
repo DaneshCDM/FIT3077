@@ -12,6 +12,17 @@ By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Ma
 ## Setup Guide
 To run the project, the user can either build an executable or just run `morris.jar` in the repository.
 
+Note: The executable requires minimum JDK 19 to run. Please ensure the correct
+version is in your PATH variable.
+
+JDK 19 Download: https://download.oracle.com/java/19/archive/jdk-19.0.2_windows-x64_bin.exe
+
+To add to the Path manually, go to environment variables and locate
+the directory where JDK 19 is installed. Add another directory to
+Path of the form `<YOUR DIRECTORY>\Java\jdk-19\bin\javaw.exe`.
+
+
+
 
 ### Build the executable
 1. Download and install **Java** and **IntelliJ IDE** on your system.
