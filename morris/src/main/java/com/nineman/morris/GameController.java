@@ -22,9 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,6 +57,8 @@ public class GameController implements Initializable, InputSource, BoardListener
         game.getBoard().addBoardListener(this);
         Tooltip t = new Tooltip(getRules());
         Tooltip.install(tutorial, t);
+        t.setStyle("-fx-font-size: 15");
+        t.setShowDelay(Duration.seconds(0.2));
         this.executor = Executors.newSingleThreadExecutor();
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node node = positions.getChildren().get(i);
