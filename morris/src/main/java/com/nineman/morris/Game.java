@@ -9,7 +9,7 @@ import com.nineman.morris.actions.*;
  * It has associations with the Board, Player, and Action classes, and implements the
  * MillListener interface to handle mill-related events.
  */
-public class Game implements BoardListener {
+public class Game extends BoardListenerAdapter {
 
     private Board board;
     private Player player1;

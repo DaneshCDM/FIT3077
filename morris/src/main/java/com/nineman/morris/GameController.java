@@ -34,7 +34,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class GameController implements Initializable, InputSource, BoardListener {
+public class GameController extends BoardListenerAdapter implements Initializable, InputSource {
     @FXML
     private AnchorPane gameScene;
 
