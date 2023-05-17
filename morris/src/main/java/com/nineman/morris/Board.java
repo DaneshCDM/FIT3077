@@ -77,54 +77,6 @@ public class Board implements Iterable<Position> {
         down.setPositionUp(middle);
     }
 
-    /**
-     * Checks if a mill is formed horizontally or vertically by the given color at the input position.
-     *
-     * @param i the input position
-     * @param color the color to check for a mill
-     * @return true if a mill is formed, false otherwise
-     */
-    public boolean isPartOfMill(Position i, Color color) {
-        return detectHorizontalMill(i, color) || detectVerticalMill(i, color);
-    }
-
-    /**
-     * Detects if a mill is formed horizontally by the given color at the input position.
-     *
-     * @param pos the input position
-     * @param color the color to check for a mill
-     * @return true if a mill is formed, false otherwise
-     */    public boolean detectHorizontalMill(Position pos, Color color) {
-        Position left = pos.left();
-        Position right = pos.right();
-        if (left != null && right != null) {
-            Color[] values = {left.getColor(), pos.getColor(), right.getColor()};
-            return Arrays.stream(values).allMatch(x -> x == color);
-        } else if (left == null){
-            return detectHorizontalMill(right, color);
-        } else {
-            return detectHorizontalMill(left, color);
-        }
-    }
-
-    /**
-     * Detects if a mill is formed vertically by the given color at the input position.
-     *
-     * @param pos the input position
-     * @param color the color to check for a mill
-     * @return true if a mill is formed, false otherwise
-     */    public boolean detectVerticalMill(Position pos, Color color) {
-        Position up = pos.up();
-        Position down = pos.down();
-        if (up != null && down != null) {
-            Color[] values = {up.getColor(), pos.getColor(), down.getColor()};
-            return Arrays.stream(values).allMatch(x -> x == color);
-        } else if (up == null){
-            return detectVerticalMill(down, color);
-        } else {
-            return detectVerticalMill(up, color);
-        }
-    }
 
     /**
      * Places a token of the given color at the specified position.
@@ -141,7 +93,7 @@ public class Board implements Iterable<Position> {
         Position pos = positions[position];
         pos.setColor(color);
         currentTurn += 1;
-        if (isPartOfMill(positions[position], color)) {
+        if (pos.isPartOfMill(color)) {
             notifyMillFormed();
         }
         if (color == Color.WHITE) {
@@ -198,10 +150,7 @@ public class Board implements Iterable<Position> {
         if (current == null || current == color) {
             return false;
         }
-        if (!Arrays.stream(positions)
-                    .filter(x -> x.getColor() == color.invert())
-                    .allMatch(x -> isPartOfMill(x, color.invert())) &&
-                isPartOfMill(positions[position], color.invert())) {
+        if (positions[position].isPartOfMill(color.invert())) {
             return false;
         }
         positions[position].setColor(null);

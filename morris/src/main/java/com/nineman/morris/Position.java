@@ -1,5 +1,7 @@
 package com.nineman.morris;
 
+import java.util.Arrays;
+
 /**
  * Class representing a position on the Nine Men's Morris game board.
  * Manages the color of the token at the position and connections to adjacent positions.
@@ -17,11 +19,62 @@ public class Position {
      * Checks if the input position is adjacent to this position.
      * @param pos The position to check adjacency with.
      * @return true if the input position is adjacent, false otherwise.
-     */    public boolean adjacent(Position pos) {
+     */
+    public boolean adjacent(Position pos) {
         if (pos == null) {
             return false;
         }
         return pos == positionLeft || pos == positionRight || pos == positionUp || pos == positionDown;
+    }
+
+    /**
+     * Checks if a mill is formed horizontally or vertically by the given color at the input position.
+     *
+     * @param color the color to check for a mill
+     * @return true if a mill is formed, false otherwise
+     */
+    public boolean isPartOfMill(Color color) {
+        return detectHorizontalMill(this, color) || detectVerticalMill(this, color);
+    }
+
+    /**
+     * Detects if a mill is formed horizontally by the given color at the input position.
+     *
+     * @param pos the input position
+     * @param color the color to check for a mill
+     * @return true if a mill is formed, false otherwise
+     */
+    public boolean detectHorizontalMill(Position pos, Color color) {
+        Position left = pos.left();
+        Position right = pos.right();
+        if (left != null && right != null) {
+            Color[] values = {left.getColor(), pos.getColor(), right.getColor()};
+            return Arrays.stream(values).allMatch(x -> x == color);
+        } else if (left == null){
+            return detectHorizontalMill(right, color);
+        } else {
+            return detectHorizontalMill(left, color);
+        }
+    }
+
+    /**
+     * Detects if a mill is formed vertically by the given color at the input position.
+     *
+     * @param pos the input position
+     * @param color the color to check for a mill
+     * @return true if a mill is formed, false otherwise
+     */
+    public boolean detectVerticalMill(Position pos, Color color) {
+        Position up = pos.up();
+        Position down = pos.down();
+        if (up != null && down != null) {
+            Color[] values = {up.getColor(), pos.getColor(), down.getColor()};
+            return Arrays.stream(values).allMatch(x -> x == color);
+        } else if (up == null){
+            return detectVerticalMill(down, color);
+        } else {
+            return detectVerticalMill(up, color);
+        }
     }
 
     /**
