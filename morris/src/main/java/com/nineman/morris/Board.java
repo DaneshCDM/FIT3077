@@ -1,11 +1,9 @@
 package com.nineman.morris;
 
+import javafx.geometry.Pos;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Represents the Nine Men's Morris game board and manages its state.
@@ -225,18 +223,40 @@ public class Board implements Iterable<Position> {
      */
     public void notifyGameOver() {
         if (!gameOverNotified) {
-            Color c = getTokenCount(Color.BLACK) == 2? Color.WHITE : Color.BLACK;
+            Color c = (getTokenCount(Color.BLACK) == 2) || noMovesLeft(Color.BLACK)? Color.WHITE : Color.BLACK;
             listeners.forEach(listener -> listener.onGameOver(c));
             gameOverNotified = true;
         }
     }
 
     public boolean isGameOver() {
-        boolean result = allTokensPlaced() && (getTokenCount(Color.WHITE) < 3 || getTokenCount(Color.BLACK) < 3);
+        boolean result = allTokensPlaced() && (getTokenCount(Color.WHITE) < 3 || getTokenCount(Color.BLACK) < 3) ||
+                noMovesLeft(Color.WHITE) || noMovesLeft(Color.BLACK);
         if (result) {
             notifyGameOver();
         }
         return result;
+    }
+
+    private boolean noMovesLeft(Color c) {
+        if (!allTokensPlaced() || getTokenCount(c) == 3) {
+            return false;
+        }
+
+        for (Position p : positions) {
+            if (p.getColor() == c) {
+                for (Position q : getAdjacent(p)) {
+                    if (q != null && q.getColor() == null) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    private Position[] getAdjacent(Position p) {
+        return new Position[]{p.up(), p.down(), p.left(), p.right()};
     }
 
     /**

@@ -13,6 +13,11 @@ version is in your PATH variable. Use your terminal to check the environment ver
 and ensure it is at least 19.
 ![img.png](img.png)
 
+![img_1.png](img_1.png)
+
+If you see the above message when opening the executable,
+click <u>More Info</u> and click <u>Run Anyway</u>
+
 JDK 19 Download:https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html
 
 ---
@@ -32,6 +37,13 @@ Prerequisites: Windows 10 OS is required for the game to run.
 The executable is self-contained and able 
 to run without any other dependencies. It is under the directory `.\game\game.exe`.
 Ignore the other files.
+
+
+![img_1.png](img_1.png)
+
+If you see the above message when opening the executable,
+click <u>More Info</u> and click <u>Run Anyway</u>
+
 
 ### Building the executable
 Prerequisites: IntelliJ, Minimum version of Java JDK 19
