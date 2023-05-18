@@ -44,7 +44,7 @@ public class Position {
      * @param color the color to check for a mill
      * @return true if a mill is formed, false otherwise
      */
-    public boolean detectHorizontalMill(Position pos, Color color) {
+    private boolean detectHorizontalMill(Position pos, Color color) {
         Position left = pos.left();
         Position right = pos.right();
         if (left != null && right != null) {
@@ -64,7 +64,7 @@ public class Position {
      * @param color the color to check for a mill
      * @return true if a mill is formed, false otherwise
      */
-    public boolean detectVerticalMill(Position pos, Color color) {
+    private boolean detectVerticalMill(Position pos, Color color) {
         Position up = pos.up();
         Position down = pos.down();
         if (up != null && down != null) {
