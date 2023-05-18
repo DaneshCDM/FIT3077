@@ -150,11 +150,17 @@ public class Board implements Iterable<Position> {
         if (current == null || current == color) {
             return false;
         }
-        if (positions[position].isPartOfMill(color.invert())) {
+        Color opponentColor = color.invert();
+        if (positions[position].isPartOfMill(opponentColor) && !allTokensAreMill(opponentColor)) {
             return false;
         }
         positions[position].setColor(null);
         return true;
+    }
+
+    private boolean allTokensAreMill(Color color) {
+        return Arrays.stream(positions).filter(c -> c.getColor() == color)
+                .allMatch(x -> x.isPartOfMill(color));
     }
 
     /**
