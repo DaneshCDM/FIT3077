@@ -2,6 +2,12 @@
 **FIT3077 Software Engineering: Architecture and Design** <br>
 By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Mariapan
 
+### Sprint 2 Executable
+Run the program `morris.jar`. The executable requires minimum JDK 19 to run. Please ensure the correct
+version is in your PATH variable. Use your terminal to check the environment version of Java
+and ensure it is at least 19.
+
+
 ### Sprint 3 Submission
 **Design Rationale and diagrams**: `docs/Sprint 3/sprint3.pdf`
 
@@ -11,7 +17,7 @@ By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Ma
 
 To run the project, the user can either build or 
 just run the pre-compiled executable in the repository.
-### Compiled executable
+### Compiled Sprint 3 executable
 Prerequisites: Windows 10 OS is required for the game to run. 
 
 The executable is self-contained and able 
@@ -54,7 +60,7 @@ Environment Variables... Select Path and add another directory of the form
       the initial token to move has to be reselected again.
    3. To jump a token, click on 1 of your token, then any empty position that you want to move.
       1. If an invalid token is pressed anytime in the process
-         (e.g. Selecting opposing token color to move/ Move to occupied position)
+         (e.g. Selecting opposing token color to jump/ Jump to occupied position)
          the initial token to jump has to be reselected again.
 3. When a mill is formed, the player can remove another player's token
 that is not part of a mill or any of it if all of them are a mill. 
