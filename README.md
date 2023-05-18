@@ -74,7 +74,7 @@ build and launch the Application.
 
 ## Game Instructions
 
-**Current State of implementation:**
+**Current State of implementation (full game):**
 1. Player is able to place, move, and jump tokens according to the game rules.
    1. To place a token, click on any empty position. 
    2. To move a token, click on 1 of your token, proceeded by the adjacent empty position that you want to move.
@@ -88,3 +88,4 @@ build and launch the Application.
 3. When a mill is formed, the player can remove another player's token
 that is not part of a mill or any of it if all of them are a mill. 
 The turn indicator will not alternate the player's turn.
+4. Whoever has 2 tokens left or no legal moves loses.
