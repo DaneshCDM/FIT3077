@@ -25,8 +25,11 @@ public class MenuApplication extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
+        // Load the FXML file for the menu view
         FXMLLoader fxmlLoader = new FXMLLoader(MenuApplication.class.getResource("menu-view.fxml"));
+        // Create a scene with the content using FXML file and specify dimensions
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        // Set tile of Stage (Application Window)
         stage.setTitle("Nine Men's Morris \uD83C\uDFAE");
         stage.setScene(scene);
         stage.show();
