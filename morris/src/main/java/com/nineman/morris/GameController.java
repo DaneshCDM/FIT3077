@@ -85,9 +85,9 @@ public class GameController extends BoardListenerAdapter implements Initializabl
 
     private String getRules() {
         return """
-                Each of the two players has 9 pieces (tokens or men) that, in turn,
+                Initial Phase: Each of the two players has 9 pieces (tokens or men) that, in turn,
                 are placed on the board on one of the empty 24 line intersections,
-                starting with an empty board. Once all 18 pieces have been placed\s
+                starting with an empty board. \n Mid-Game Phase: Once all 18 pieces have been placed\s
                 onto the board, players, again in turn, slide one of their pieces along
                 a board line to an empty adjacent intersection (not diagonally).
                 If a player is able to form a straight row of three pieces along one
@@ -96,9 +96,11 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                 of a mill. This can happen either during the initial placing of the pieces
                 onto the board or the subsequent sliding of pieces along the board's lines.
                 A piece that has been removed from the board cannot be placed again and is "lost"
-                for the corresponding player. Once a player has only three pieces left, he/she
+                for the corresponding player. \n End-Game Phase: Once a player has only three pieces left, he/she
                 may jump (fly or hop) one piece per turn to an empty intersection (and hence does
-                not have to slide a piece along one of the board's lines).""";
+                not have to slide a piece along one of the board's lines). \n
+                The winner is decided when his/her opponent is left with only two tokens
+                or does not have any more valid moves""";
     }
 
     /**
