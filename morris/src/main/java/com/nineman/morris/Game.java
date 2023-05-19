@@ -41,7 +41,7 @@ public class Game extends BoardListenerAdapter {
      * @return the updated game state
      */
     public Game playTurn() {
-        if (board.isGameOver()) {
+        if (nextAction == null && board.isGameOver(currentPlayerTurn)) {
             return this;
         }
         boolean status = getPlayerMove(currentPlayerTurn).execute(currentPlayerTurn, board);

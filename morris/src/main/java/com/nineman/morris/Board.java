@@ -229,9 +229,9 @@ public class Board implements Iterable<Position> {
         }
     }
 
-    public boolean isGameOver() {
+    public boolean isGameOver(Player player) {
         boolean result = allTokensPlaced() && (getTokenCount(Color.WHITE) < 3 || getTokenCount(Color.BLACK) < 3) ||
-                noMovesLeft(Color.WHITE) || noMovesLeft(Color.BLACK);
+                noMovesLeft(player.color);
         if (result) {
             notifyGameOver();
         }
