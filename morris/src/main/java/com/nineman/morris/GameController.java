@@ -140,7 +140,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Victory!");
-            alert.setHeaderText(String.format("Player %s wins!", c.playerNumber()));
+            alert.setHeaderText(String.format("\uD83C\uDF89 Congratulations! \uD83C\uDF89 \n \uD83C\uDFC6 Player %s wins! \uD83C\uDFC6", c.playerNumber()));
             if (alert.showAndWait().get() == ButtonType.OK) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-view.fxml"));
                 Parent root = null;
