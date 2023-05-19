@@ -91,7 +91,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                 onto the board, players, again in turn, slide one of their pieces along
                 a board line to an empty adjacent intersection (not diagonally).
                 If a player is able to form a straight row of three pieces along one
-                of the board's lines (i.e. not diagonally), he/she has a "mill" and
+                of the board's lines (i.e. not diagonally), he/she has formed a "mill" and
                 may remove one of his/her opponent's pieces from the board that is not part
                 of a mill. This can happen either during the initial placing of the pieces
                 onto the board or the subsequent sliding of pieces along the board's lines.
@@ -140,7 +140,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Victory!");
-            alert.setHeaderText(String.format("Player %s wins!", c.playerNumber()));
+            alert.setHeaderText(String.format("\uD83C\uDF89 Congratulations! \uD83C\uDF89 \n \uD83C\uDFC6 Player %s wins! \uD83C\uDFC6", c.playerNumber()));
             if (alert.showAndWait().get() == ButtonType.OK) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-view.fxml"));
                 Parent root = null;
