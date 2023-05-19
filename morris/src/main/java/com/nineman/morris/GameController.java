@@ -53,20 +53,28 @@ public class GameController extends BoardListenerAdapter implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Create a new instance of the Game class, passing 'this' as the InputSource
         Game game = new Game(this);
         game.getBoard().addBoardListener(this);
+        // Set up a tooltip with the game rules and attach it to the tutorial node
         Tooltip t = new Tooltip(getRules());
         Tooltip.install(tutorial, t);
         t.setStyle("-fx-font-size: 15");
         t.setShowDelay(Duration.seconds(0.2));
+        // Create an executor to handle game state updates in response to user clicks
         this.executor = Executors.newSingleThreadExecutor();
+        // Set up event handlers for each position on the game board
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node node = positions.getChildren().get(i);
             int finalI = i;
             node.setOnMouseClicked(mouseEvent -> {
+                // Set up event handlers for each position on the game board
                 clicks.offer(Integer.toString(finalI));
+                // Execute the game state update in a separate thread
                 executor.execute(() -> {
+                    // Play the current player's turn and get the updated game state
                     Game state = game.playTurn();
+                    // Clear the clicks queue and update the game view on the JavaFX application thread
                     clicks.clear();
                     Platform.runLater(() -> update(state));
                 });
@@ -102,6 +110,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
      * @param game The current game state to be displayed, representing the model in the MVC architecture.
      */
     public void update(Game game) {
+        // Update the style classes for each token position based on the game state
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node tokenView = positions.getChildren().get(i);
             tokenView.getStyleClass().clear();
@@ -110,8 +119,10 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                 tokenView.getStyleClass().add(color);
             tokenView.getStyleClass().add("clickable");
         }
+        // Update the turn indicator text to reflect the current player's turn
         turnIndicatorText.setText(String.format("Player %s Turn", game.currentPlayerTurn()));
 
+        // Update the visibility of the token display panes based on the number of remaining tokens
         whiteTokenDisplay.getChildren().forEach(x -> x.setVisible(true));
         blackTokenDisplay.getChildren().forEach(x -> x.setVisible(true));
         whiteTokenDisplay.getChildren()
