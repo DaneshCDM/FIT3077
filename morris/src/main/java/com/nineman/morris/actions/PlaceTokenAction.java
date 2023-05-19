@@ -15,8 +15,11 @@ public class PlaceTokenAction implements Action {
      */
     @Override
     public boolean execute(Player player, Board board) {
+        // Get the input source for the player
         InputSource controller = player.getSource();
+        // Parse the input as an integer representing desired position
         int position = Integer.parseInt(controller.getInput());
+        // Place player's token on the board at the specified position and return
         return board.placeToken(position, player.color);
     }
 }
