@@ -1,5 +1,5 @@
 /**
- * MenuApplication is the main entry point for the 9 Man Morris game.
+ * MenuApplication is the main entry point for the Nine Men's Morris game.
  * This class is responsible for initializing the game menu and setting up the JavaFX application.
  *
  * @version 1.0
@@ -27,7 +27,7 @@ public class MenuApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MenuApplication.class.getResource("menu-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("9 Man Morris");
+        stage.setTitle("Nine Men's Morris \uD83C\uDFAE");
         stage.setScene(scene);
         stage.show();
     }
