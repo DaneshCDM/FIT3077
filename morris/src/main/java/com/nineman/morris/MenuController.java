@@ -52,24 +52,50 @@ public class MenuController {
         stage.show();
     }
 
+    /**
+     * playerVSPlayer method is triggered by an event (e.g., a button click) in the game menu.
+     * It sets the game mode to PLAYER_VS_PLAYER and switches to the game scene.
+     *
+     * @param event The event that triggered the method, typically a button click.
+     * @throws IOException If there is an issue loading the game-scene FXML layout file.
+     */
     @FXML
     protected void playerVSPlayer(ActionEvent event) throws IOException {
         gameMode = PLAYER_VS_PLAYER;
         switchToGameScene(event);
     }
 
+    /**
+     * playAsWhite method is triggered by an event (e.g., a button click) in the game menu.
+     * It sets the game mode to WHITE_VS_AI and switches to the game scene.
+     *
+     * @param event The event that triggered the method, typically a button click.
+     * @throws IOException If there is an issue loading the game-scene FXML layout file.
+     */
     @FXML
     protected void playAsWhite(ActionEvent event) throws IOException {
         gameMode = WHITE_VS_AI;
         switchToGameScene(event);
     }
 
+    /**
+     * playAsBlack method is triggered by an event (e.g., a button click) in the game menu.
+     * It sets the game mode to BLACK_VS_AI and switches to the game scene.
+     *
+     * @param event The event that triggered the method, typically a button click.
+     * @throws IOException If there is an issue loading the game-scene FXML layout
+    **/
     @FXML
     protected void playAsBlack(ActionEvent event) throws IOException {
         gameMode = BLACK_VS_AI;
         switchToGameScene(event);
     }
 
+    /**
+     * Retrieves the current game mode.
+     *
+     * @return The current game mode as an integer.
+     */
     public int gameMode() {
         return gameMode;
     }
