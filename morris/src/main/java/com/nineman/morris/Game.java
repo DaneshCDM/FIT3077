@@ -2,6 +2,9 @@ package com.nineman.morris;
 
 import com.nineman.morris.actions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a Nine Men's Morris game, managing the game flow, alternating turns between
  * players, and responding to events such as a mill formation. This class follows the
@@ -17,19 +20,21 @@ public class Game extends BoardListenerAdapter {
     private Player currentPlayerTurn;
     private boolean lockPlayerTurn;
     private Action nextAction;
+    private List<GameListener> gameObserver;
 
     /**
      * Constructs a new Nine Men's Morris game with the given input source.
      * Initializes the board, players, and sets the current player turn.
      *
-     * @param source the input source to receive player input during the game
+     * @param sources the input source to receive player's input during the game
      */
-    public Game(InputSource source) {
+    public Game(List<InputSource> sources) {
         this.board = new Board();
-        this.player1 = new Player(source, Color.WHITE); // Assumes player 1 is white
-        this.player2 = new Player(source, Color.BLACK);
+        this.player1 = new Player(sources.get(0), Color.WHITE); // Assumes player 1 is white
+        this.player2 = new Player(sources.get(1), Color.BLACK);
         this.currentPlayerTurn = player1; // White player goes first
         this.lockPlayerTurn = false;
+        gameObserver = new ArrayList<>();
         board.addBoardListener(this);
     }
 
@@ -54,7 +59,16 @@ public class Game extends BoardListenerAdapter {
                 lockPlayerTurn = false;
             }
         }
+        notifyNextState();
         return this;
+    }
+
+    public void registerListener(GameListener listener) {
+        gameObserver.add(listener);
+    }
+
+    public void notifyNextState() {
+        gameObserver.forEach(x -> x.OnNextGameState(this));
     }
 
     /**
