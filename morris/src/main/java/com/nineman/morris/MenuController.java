@@ -13,11 +13,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MenuController {
+
+    public static final int PLAYER_VS_PLAYER = 1;
+    public static final int WHITE_VS_AI = 2;
+    public static final int BLACK_VS_AI = 3;
 
     /**
      * switchToGameScene method is triggered by an event (e.g., a button click) in the game menu.
@@ -30,6 +35,7 @@ public class MenuController {
     protected void switchToGameScene(ActionEvent event) throws IOException {
         // Load the game-scene FXML layout file
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game-scene.fxml"));
+        fxmlLoader.setController(new GameController(this));
         Parent root = fxmlLoader.load();
         // Load the game CSS file and add it to the scene
         String css = getClass().getResource("game.css").toExternalForm();
@@ -43,7 +49,29 @@ public class MenuController {
         // Set the newly created scene as the scene for the stage
         stage.setScene(scene);
         // Show the stage with the updated scene
-
         stage.show();
     }
+
+    @FXML
+    protected void playerVSPlayer(ActionEvent event) throws IOException {
+        gameMode = PLAYER_VS_PLAYER;
+        switchToGameScene(event);
+    }
+
+    @FXML
+    protected void playAsWhite(ActionEvent event) throws IOException {
+        gameMode = WHITE_VS_AI;
+        switchToGameScene(event);
+    }
+
+    @FXML
+    protected void playAsBlack(ActionEvent event) throws IOException {
+        gameMode = BLACK_VS_AI;
+        switchToGameScene(event);
+    }
+
+    public int gameMode() {
+        return gameMode;
+    }
+    private int gameMode = 1;
 }

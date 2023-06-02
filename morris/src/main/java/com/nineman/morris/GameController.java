@@ -9,6 +9,7 @@
 package com.nineman.morris;
 
 import com.nineman.morris.actions.InputSource;
+import com.nineman.morris.actions.RandomMoveGenerator;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,14 +28,13 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-public class GameController extends BoardListenerAdapter implements Initializable, InputSource {
+public class GameController extends BoardListenerAdapter implements Initializable, InputSource, GameListener {
     @FXML
     private AnchorPane gameScene;
 
@@ -42,6 +42,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
     private Label turnIndicatorText;
     private ArrayBlockingQueue<String> clicks = new ArrayBlockingQueue<>(5);
     private ExecutorService executor;
+    private MenuController menuController;
     private final EnumMap<Color, String> COLOR_MAP = new EnumMap<>(Map.of(Color.WHITE, "wt", Color.BLACK, "bt"));
 
     /**
@@ -53,9 +54,23 @@ public class GameController extends BoardListenerAdapter implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        List<InputSource> playerSources = new ArrayList<>(List.of(this, this));
+        RandomMoveGenerator generator = null;
+        if (menuController.gameMode() == MenuController.WHITE_VS_AI) {
+            generator = new RandomMoveGenerator(Color.BLACK);
+            playerSources.set(1, generator);
+        } else if (menuController.gameMode() == MenuController.BLACK_VS_AI) {
+            generator = new RandomMoveGenerator(Color.WHITE);
+            playerSources.set(0, generator);
+        }
         // Create a new instance of the Game class, passing 'this' as the InputSource
-        Game game = new Game(this);
+        Game game = new Game(playerSources);
+        game.registerListener(this);
         game.getBoard().addBoardListener(this);
+        if (generator != null) {
+            generator.setGame(game);
+            game.notifyNextState();
+        }
         // Set up a tooltip with the game rules and attach it to the tutorial node
         Tooltip t = new Tooltip(getRules());
         Tooltip.install(tutorial, t);
@@ -76,11 +91,14 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                     Game state = game.playTurn();
                     // Clear the clicks queue and update the game view on the JavaFX application thread
                     clicks.clear();
-                    Platform.runLater(() -> update(state));
                 });
             });
         }
 //        onGameOver(Color.WHITE); // backdoor game over option for debugging
+    }
+
+    public GameController(MenuController controller) {
+        menuController = controller;
     }
 
     private String getRules() {
@@ -143,7 +161,8 @@ public class GameController extends BoardListenerAdapter implements Initializabl
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Victory!");
             alert.setHeaderText(String.format("\uD83C\uDF89 Congratulations! \uD83C\uDF89 \n \uD83C\uDFC6 Player %s wins! \uD83C\uDFC6", c.playerNumber()));
-            if (alert.showAndWait().get() == ButtonType.OK) {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isEmpty() || result.get() == ButtonType.OK) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-view.fxml"));
                 Parent root = null;
                 try {
@@ -160,7 +179,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         });
     }
 
-    @FXML private Pane positions;
+    @FXML public Pane positions;
     @FXML private Node tutorial;
     @FXML private Pane whiteTokenDisplay;
     @FXML private Pane blackTokenDisplay;
@@ -179,5 +198,10 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         } catch (InterruptedException e) {
             throw new Error("Unexpected Interrupt");
         }
+    }
+
+    @Override
+    public void OnNextGameState(Game game) {
+        Platform.runLater(() -> update(game));
     }
 }
