@@ -32,11 +32,21 @@ public class RandomMoveGenerator extends BoardListenerAdapter implements InputSo
         random.setSeed(seed);
     }
 
+    /**
+     * Sets the game and registers this generator as a listener for the game events.
+     *
+     * @param game The game instance.
+     */
     public void setGame(Game game) {
         this.lastGameState = game;
         game.registerListener(this);
     }
 
+    /**
+     * Retrieves the next move from the generator.
+     *
+     * @return The next move as a string.
+     */
     @Override
     public String getInput() {
         if (moves.isEmpty()) {
@@ -49,6 +59,12 @@ public class RandomMoveGenerator extends BoardListenerAdapter implements InputSo
         }
     }
 
+    /**
+     * Retrieves all positions on the board occupied by the specified color.
+     *
+     * @param c The color of the player.
+     * @return A list of positions as strings.
+     */
     private List<String> getAllPositions(Color c) {
         List<String> positions = new ArrayList<>();
         for (int i = 0; i < 24; i++){
@@ -59,6 +75,12 @@ public class RandomMoveGenerator extends BoardListenerAdapter implements InputSo
         return positions;
     }
 
+    /**
+     * Called when a new game state is available.
+     * If it is the current player's turn, clears the moves and plays a turn in the game.
+     *
+     * @param game The game instance.
+     */
     @Override
     public void OnNextGameState(Game game) {
         if (!game.currentPlayerTurn().equals(playerColor.playerNumber())) {
@@ -73,6 +95,10 @@ public class RandomMoveGenerator extends BoardListenerAdapter implements InputSo
         }
     }
 
+    /**
+     * Loads random positions into the moves queue.
+     * Each position is represented as a string.
+     */
     private void loadRandomPositions() {
         for (int i = 0; i < 24; i++){
             moves.offer(Integer.toString(random.nextInt(24)));
