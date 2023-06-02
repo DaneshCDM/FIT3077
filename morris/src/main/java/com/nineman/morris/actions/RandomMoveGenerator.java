@@ -8,14 +8,24 @@ import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The RandomMoveGenerator class is responsible for generating random moves for a player in a Nine Men's Morris game.
+ * It implements the InputSource and GameListener interfaces.
+ */
 public class RandomMoveGenerator extends BoardListenerAdapter implements InputSource, GameListener {
 
-    private ArrayBlockingQueue<String> moves = new ArrayBlockingQueue<>(50);
-    private Color playerColor;
-    private Game lastGameState;
-    private int seed;
-    private final Random random = new Random();
+    private ArrayBlockingQueue<String> moves = new ArrayBlockingQueue<>(50); // A queue to store the generated moves
+    private Color playerColor; // The color of the player for which the moves are generated
+    private Game lastGameState;  // The last known game state
+    private int seed; // Seed value for random number generation
+    private final Random random = new Random();// Random number generator
 
+
+    /**
+     * Constructs a RandomMoveGenerator object for the specified player color.
+     *
+     * @param color The color of the player.
+     */
     public RandomMoveGenerator(Color color) {
         playerColor = color;
         seed = random.nextInt();
