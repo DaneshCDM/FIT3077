@@ -10,6 +10,7 @@ package com.nineman.morris;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -26,8 +27,15 @@ public class MenuApplication extends Application {
     public void start(Stage stage) throws IOException {
         // Load the FXML file for the menu view
         FXMLLoader fxmlLoader = new FXMLLoader(MenuApplication.class.getResource("menu-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        // Load the menu CSS file and add it to the scene
+        String css = MenuApplication.class.getResource("menu.css").toExternalForm();
+        root.getStylesheets().add(css);
+
         // Create a scene with the content using FXML file and specify dimensions
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(root, 320, 280);
+
         // Set tile of Stage (Application Window)
         stage.setTitle("Nine Men's Morris \uD83C\uDFAE");
         stage.setScene(scene);
