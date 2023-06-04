@@ -229,6 +229,12 @@ public class Board implements Iterable<Position> {
         }
     }
 
+    /**
+     * Checks if the game is over (A player has 2 tokens left or no more valid moves)
+     *
+     * @param player the current player
+     * @return true if the game is over, false otherwise
+     */
     public boolean isGameOver(Player player) {
         boolean result = allTokensPlaced() && (getTokenCount(Color.WHITE) < 3 || getTokenCount(Color.BLACK) < 3) ||
                 noMovesLeft(player.color);
@@ -238,7 +244,14 @@ public class Board implements Iterable<Position> {
         return result;
     }
 
+    /**
+     * Checks if there are no valid moves left for a given player color.
+     *
+     * @param c the color of the current player
+     * @return true if no moves are left, false otherwise
+     */
     private boolean noMovesLeft(Color c) {
+        // If tokens are not yet placed or the player has 3 tokens left, there are still possible moves
         if (!allTokensPlaced() || getTokenCount(c) == 3) {
             return false;
         }
