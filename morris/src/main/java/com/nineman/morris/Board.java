@@ -174,10 +174,20 @@ public class Board implements Iterable<Position> {
         return currentTurn;
     }
 
+    /**
+     * Returns the number of white tokens left to be placed on the board.
+     *
+     * @return the number of white tokens remaining
+     */
     public int whiteTokensLeft() {
         return whiteTokensLeft;
     }
 
+    /**
+     * Returns the number of black tokens left to be placed on the board.
+     *
+     * @return the number of black tokens remaining
+     */
     public int blackTokensLeft() {
         return blackTokensLeft;
     }
@@ -268,6 +278,12 @@ public class Board implements Iterable<Position> {
         return true;
     }
 
+    /**
+     * Returns the adjacent positions to a given position.
+     *
+     * @param p the position to get adjacent positions for
+     * @return an array of adjacent positions
+     */
     private Position[] getAdjacent(Position p) {
         return new Position[]{p.up(), p.down(), p.left(), p.right()};
     }
