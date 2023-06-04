@@ -171,6 +171,8 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                     throw new RuntimeException(e);
                 }
                 Scene scene = new Scene(root);
+                String css = getClass().getResource("menu.css").toExternalForm();
+                scene.getStylesheets().add(css);
                 Stage stage = (Stage) gameScene.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
