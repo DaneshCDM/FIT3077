@@ -1,3 +1,7 @@
+.menu-view {
+    -fx-background-color: linear-gradient(to bottom, #e6c5ff, #ffe6cc);
+}
+
 .menu-button {
     -fx-font-size: 14px;
     -fx-font-family: "Comic Sans MS", sans-serif;
