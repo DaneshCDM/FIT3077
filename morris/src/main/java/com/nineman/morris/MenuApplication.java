@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -30,6 +31,8 @@ public class MenuApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         // Set tile of Stage (Application Window)
         stage.setTitle("Nine Men's Morris \uD83C\uDFAE");
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UTILITY);
         stage.setScene(scene);
         stage.show();
     }

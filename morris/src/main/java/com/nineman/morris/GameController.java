@@ -17,10 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -159,6 +156,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
     public void onGameOver(Color c) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Back to menu");
             alert.setTitle("Victory!");
             alert.setHeaderText(String.format("\uD83C\uDF89 Congratulations! \uD83C\uDF89 \n \uD83C\uDFC6 Player %s wins! \uD83C\uDFC6", c.playerNumber()));
             Optional<ButtonType> result = alert.showAndWait();
