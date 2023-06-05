@@ -15,7 +15,7 @@
          <Image url="@title_image.png" />
       </image>
    </ImageView>
-    <Button onAction="#playerVSPlayer" text="Player v.s. Player" />
-   <Button onAction="#playAsWhite" text="Advanced Feature 1" />
-   <Button onAction="#playAsBlack" text="Advanced Feature 2" />
+    <Button onAction="#playerVSPlayer" text="Player vs Player" styleClass="menu-button" />
+   <Button onAction="#playAsWhite" text="Player (White) vs Computer" styleClass="menu-button" />
+   <Button onAction="#playAsBlack" text="Player (Black) vs Computer" styleClass="menu-button" />
 </VBox>

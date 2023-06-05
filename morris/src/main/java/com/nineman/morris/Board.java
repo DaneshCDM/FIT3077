@@ -20,9 +20,12 @@ public class Board implements Iterable<Position> {
     /** Game Over Notification only fires once */
     private boolean gameOverNotified;
 
+
     /**
      * Constructs a new Nine Men's Morris game board.
-     * Initializes the positions, their connections, and the listeners.
+     * It initializes the positions, their connections and sets the initial
+     * state of the game, including the number of tokens left for each player and
+     * initializes the listener list for mill formation and game over events.
      */
     public Board() {
         positions = new Position[24];
@@ -48,7 +51,8 @@ public class Board implements Iterable<Position> {
     }
 
     /**
-     * Connects three given positions horizontally.
+     * Connects three given positions horizontally, useful for establishing
+     * the layout of the game board.
      *
      * @param left the leftmost position
      * @param middle the middle position
@@ -62,7 +66,8 @@ public class Board implements Iterable<Position> {
     }
 
     /**
-     * Connects three given positions vertically.
+     * Connects three given positions vertically, useful for establishing
+     * the layout of the game board.
      *
      * @param up the upper position
      * @param middle the middle position
@@ -119,11 +124,14 @@ public class Board implements Iterable<Position> {
 
     /**
      * Jumps a token from one position to another if the destination is unoccupied.
+     * It checks if the destination is empty and if the source position has a token,
+     * then removes the token from the source position and places it on the destination.
      *
      * @param from the source position index
      * @param destination the destination position index
      * @return true if the token is jumped successfully, false otherwise
      */
+
     public boolean jumpToken(int from, int destination) {
         Color fromTokenColor = positions[from].getColor();
         Color destinationTokenColor = positions[destination].getColor();
@@ -138,6 +146,8 @@ public class Board implements Iterable<Position> {
 
     /**
      * Removes a token from the specified position if it belongs to the opponent.
+     * It checks if the token color at the position matches the opponent's color
+     * and if the token isn't part of a mill formation, then removes it.
      *
      * @param position the position index from which to remove the token
      * @param color the color of the current player
@@ -174,10 +184,20 @@ public class Board implements Iterable<Position> {
         return currentTurn;
     }
 
+    /**
+     * Returns the number of white tokens left to be placed on the board.
+     *
+     * @return the number of white tokens remaining
+     */
     public int whiteTokensLeft() {
         return whiteTokensLeft;
     }
 
+    /**
+     * Returns the number of black tokens left to be placed on the board.
+     *
+     * @return the number of black tokens remaining
+     */
     public int blackTokensLeft() {
         return blackTokensLeft;
     }
@@ -229,6 +249,12 @@ public class Board implements Iterable<Position> {
         }
     }
 
+    /**
+     * Checks if the game is over (A player has 2 tokens left or no more valid moves)
+     *
+     * @param player the current player
+     * @return true if the game is over, false otherwise
+     */
     public boolean isGameOver(Player player) {
         boolean result = allTokensPlaced() && (getTokenCount(Color.WHITE) < 3 || getTokenCount(Color.BLACK) < 3) ||
                 noMovesLeft(player.color);
@@ -238,7 +264,14 @@ public class Board implements Iterable<Position> {
         return result;
     }
 
+    /**
+     * Checks if there are no valid moves left for a given player color.
+     *
+     * @param c the color of the current player
+     * @return true if no moves are left, false otherwise
+     */
     private boolean noMovesLeft(Color c) {
+        // If tokens are not yet placed or the player has 3 tokens left, there are still possible moves
         if (!allTokensPlaced() || getTokenCount(c) == 3) {
             return false;
         }
@@ -255,6 +288,12 @@ public class Board implements Iterable<Position> {
         return true;
     }
 
+    /**
+     * Returns the adjacent positions to a given position.
+     *
+     * @param p the position to get adjacent positions for
+     * @return an array of adjacent positions
+     */
     private Position[] getAdjacent(Position p) {
         return new Position[]{p.up(), p.down(), p.left(), p.right()};
     }
