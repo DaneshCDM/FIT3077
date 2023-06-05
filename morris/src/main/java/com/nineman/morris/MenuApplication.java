@@ -40,7 +40,7 @@ public class MenuApplication extends Application {
         // Set tile of Stage (Application Window)
         stage.setTitle("Nine Men's Morris \uD83C\uDFAE");
         stage.setResizable(false);
-        stage.initStyle(StageStyle.UTILITY);
+//        stage.initStyle(StageStyle.UTILITY);
         stage.setScene(scene);
         stage.show();
     }
