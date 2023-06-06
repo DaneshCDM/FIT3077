@@ -19,4 +19,9 @@ public class BoardListenerAdapter implements BoardListener {
         // In this implementation, the method is left empty, providing no specific behavior.
         // Subclasses can override this method to define custom logic when the game is over.
     }
+
+    @Override
+    public void onPositionSelected(int position) {
+        
+    }
 }

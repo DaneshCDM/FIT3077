@@ -10,6 +10,14 @@
     -fx-image: url(token-white.png);
 }
 
+.wt-hl {
+    -fx-image: url(token-white-hl.png);
+}
+
 .bt {
     -fx-image: url(token-black.png);
+}
+
+.bt-hl {
+    -fx-image: url(token-black-hl.png);
 }

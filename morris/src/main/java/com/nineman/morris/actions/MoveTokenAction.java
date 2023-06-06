@@ -24,6 +24,7 @@ public class MoveTokenAction implements Action {
         if ((board.getPositions(position1).getColor() != player.color)) {
             return false;
         }
+        board.notifyPositionSelected(position1);
         // Get the second position from the input source
         position2 = Integer.parseInt(controller.getInput());
         // Move the token from position1 to position2 on the board

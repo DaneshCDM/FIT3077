@@ -17,4 +17,5 @@ public interface BoardListener {
      */
     void onGameOver(Color color);
 
+    void onPositionSelected(int position);
 }

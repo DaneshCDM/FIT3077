@@ -63,6 +63,10 @@ public class Game extends BoardListenerAdapter {
         return this;
     }
 
+    public Action nextAction() {
+        return nextAction;
+    }
+
     public void registerListener(GameListener listener) {
         gameObserver.add(listener);
     }

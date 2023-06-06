@@ -24,6 +24,7 @@ public class JumpTokenAction implements Action {
             // If it doesn't, return false indicating that the action was not successfully executed
             return false;
         }
+        board.notifyPositionSelected(position1);
         position2 = Integer.parseInt(controller.getInput());// Read the second input and parse it as an integer
         // Invoke the jumpToken method on the Board object, passing the positions as arguments
         // Return the result of the jumpToken method as the result of the execute method

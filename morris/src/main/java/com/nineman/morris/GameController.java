@@ -29,7 +29,6 @@ import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class GameController extends BoardListenerAdapter implements Initializable, InputSource, GameListener {
     @FXML
@@ -136,9 +135,12 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                 tokenView.getStyleClass().add(color);
             tokenView.getStyleClass().add("clickable");
         }
-        // Update the turn indicator text to reflect the current player's turn
-        turnIndicatorText.setText(String.format("Player %s Turn", game.currentPlayerTurn()));
 
+        if (game.nextAction() == null) {// Update the turn indicator text to reflect the current player's turn
+            turnIndicatorText.setText(String.format("Player %s Turn", game.currentPlayerTurn()));
+        } else {
+            turnIndicatorText.setText(String.format("Player %s Formed a Mill!",  game.currentPlayerTurn()));
+        }
         // Update the visibility of the token display panes based on the number of remaining tokens
         whiteTokenDisplay.getChildren().forEach(x -> x.setVisible(true));
         blackTokenDisplay.getChildren().forEach(x -> x.setVisible(true));
@@ -150,6 +152,17 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                             .stream()
                             .limit(9 - game.getBoard().blackTokensLeft())
                             .forEach(x -> x.setVisible(false));
+    }
+
+    @Override
+    public void onPositionSelected(int position) {
+        Platform.runLater(() -> {
+            Node tokenView = positions.getChildren().get(position);
+            String style = tokenView.getStyleClass().contains("wt") ? "wt-hl" : "bt-hl";
+            tokenView.getStyleClass().clear();
+            tokenView.getStyleClass().add(style);
+            tokenView.getStyleClass().add("clickable");
+        });
     }
 
     @Override

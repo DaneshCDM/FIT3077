@@ -1,9 +1,11 @@
 package com.nineman.morris;
 
-import javafx.geometry.Pos;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Represents the Nine Men's Morris game board and manages its state.
@@ -247,6 +249,10 @@ public class Board implements Iterable<Position> {
             listeners.forEach(listener -> listener.onGameOver(c));
             gameOverNotified = true;
         }
+    }
+
+    public void notifyPositionSelected(int pos) {
+        listeners.forEach(x -> x.onPositionSelected(pos));
     }
 
     /**
