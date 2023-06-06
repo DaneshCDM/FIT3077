@@ -45,22 +45,20 @@ public class Game extends BoardListenerAdapter {
      *
      * @return the updated game state
      */
-    public Game playTurn() {
-        if (nextAction == null && board.isGameOver(currentPlayerTurn)) {
-            return this;
-        }
-        boolean status = getPlayerMove(currentPlayerTurn).execute(currentPlayerTurn, board);
-        if (status) { // Action execution failed, don't proceed the game
-            nextAction = null;
-            if (!lockPlayerTurn) {
-                currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
-            } else {
-                nextAction = new RemoveTokenAction();
-                lockPlayerTurn = false;
+    public void playTurn() {
+        while (!board.isGameOver(currentPlayerTurn)) {
+            boolean status = getPlayerMove(currentPlayerTurn).execute(currentPlayerTurn, board);
+            if (status) { // Action execution failed, don't proceed the game
+                nextAction = null;
+                if (!lockPlayerTurn) {
+                    currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
+                } else {
+                    nextAction = new RemoveTokenAction();
+                    lockPlayerTurn = false;
+                }
             }
+            notifyNextState();
         }
-        notifyNextState();
-        return this;
     }
 
     public Action nextAction() {

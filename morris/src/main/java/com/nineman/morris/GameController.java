@@ -81,15 +81,10 @@ public class GameController extends BoardListenerAdapter implements Initializabl
             node.setOnMouseClicked(mouseEvent -> {
                 // Set up event handlers for each position on the game board
                 clicks.offer(Integer.toString(finalI));
-                // Execute the game state update in a separate thread
-                executor.execute(() -> {
-                    // Play the current player's turn and get the updated game state
-                    Game state = game.playTurn();
-                    // Clear the clicks queue and update the game view on the JavaFX application thread
-                    clicks.clear();
-                });
             });
         }
+        // Play the current player's turn and get the updated game state
+        executor.execute(game::playTurn);
 //        onGameOver(Color.WHITE); // backdoor game over option for debugging
     }
 

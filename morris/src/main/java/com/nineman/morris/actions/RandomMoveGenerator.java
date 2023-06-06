@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * The RandomMoveGenerator class is responsible for generating random moves for a player in a Nine Men's Morris game.
  * It implements the InputSource and GameListener interfaces.
  */
-public class RandomMoveGenerator implements InputSource, GameListener {
+public class RandomMoveGenerator implements InputSource {
 
     private ArrayBlockingQueue<String> moves = new ArrayBlockingQueue<>(50); // A queue to store the generated moves
     private Color playerColor; // The color of the player for which the moves are generated
@@ -39,7 +39,7 @@ public class RandomMoveGenerator implements InputSource, GameListener {
      */
     public void setGame(Game game) {
         this.lastGameState = game;
-        game.registerListener(this);
+//        game.registerListener(this);
     }
 
     /**
@@ -59,41 +59,25 @@ public class RandomMoveGenerator implements InputSource, GameListener {
         }
     }
 
-    /**
-     * Retrieves all positions on the board occupied by the specified color.
-     *
-     * @param c The color of the player.
-     * @return A list of positions as strings.
-     */
-    private List<String> getAllPositions(Color c) {
-        List<String> positions = new ArrayList<>();
-        for (int i = 0; i < 24; i++){
-            if (lastGameState.getBoard().getPositions(i).getColor() == c) {
-                positions.add(Integer.toString(i));
-            }
-        }
-        return positions;
-    }
-
-    /**
-     * Called when a new game state is available.
-     * If it is the current player's turn, clears the moves and plays a turn in the game.
-     *
-     * @param game The game instance.
-     */
-    @Override
-    public void OnNextGameState(Game game) {
-        if (!game.currentPlayerTurn().equals(playerColor.playerNumber())) {
-            return;
-        }
-        moves.clear();
-        lastGameState = game;
-        try {
-            game.playTurn();
-        } catch (StackOverflowError ignored) {
-            System.out.println(seed);
-        }
-    }
+//    /**
+//     * Called when a new game state is available.
+//     * If it is the current player's turn, clears the moves and plays a turn in the game.
+//     *
+//     * @param game The game instance.
+//     */
+//    @Override
+//    public void OnNextGameState(Game game) {
+//        if (!game.currentPlayerTurn().equals(playerColor.playerNumber())) {
+//            return;
+//        }
+//        moves.clear();
+//        lastGameState = game;
+//        try {
+//            game.playTurn();
+//        } catch (StackOverflowError ignored) {
+//            System.out.println(seed);
+//        }
+//    }
 
     /**
      * Loads random positions into the moves queue.
