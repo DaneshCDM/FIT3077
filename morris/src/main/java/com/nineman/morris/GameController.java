@@ -53,10 +53,10 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         List<InputSource> playerSources = new ArrayList<>(List.of(this, this));
         RandomMoveGenerator generator = null;
         if (menuController.gameMode() == MenuController.WHITE_VS_AI) {
-            generator = new RandomMoveGenerator(Color.BLACK);
+            generator = new RandomMoveGenerator();
             playerSources.set(1, generator);
         } else if (menuController.gameMode() == MenuController.BLACK_VS_AI) {
-            generator = new RandomMoveGenerator(Color.WHITE);
+            generator = new RandomMoveGenerator();
             playerSources.set(0, generator);
         }
         // Create a new instance of the Game class, passing 'this' as the InputSource
@@ -64,7 +64,6 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         game.registerListener(this);
         game.getBoard().addBoardListener(this);
         if (generator != null) {
-            generator.setGame(game);
             game.notifyNextState();
         }
         // Set up a tooltip with the game rules and attach it to the tutorial node
@@ -85,7 +84,6 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         }
         // Play the current player's turn and get the updated game state
         executor.execute(game::playTurn);
-//        onGameOver(Color.WHITE); // backdoor game over option for debugging
     }
 
     public GameController(MenuController controller) {

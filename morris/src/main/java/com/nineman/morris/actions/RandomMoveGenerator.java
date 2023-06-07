@@ -1,12 +1,7 @@
 package com.nineman.morris.actions;
 
-import com.nineman.morris.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 /**
  * The RandomMoveGenerator class is responsible for generating random moves for a player in a Nine Men's Morris game.
@@ -15,31 +10,17 @@ import java.util.concurrent.TimeUnit;
 public class RandomMoveGenerator implements InputSource {
 
     private ArrayBlockingQueue<String> moves = new ArrayBlockingQueue<>(50); // A queue to store the generated moves
-    private Color playerColor; // The color of the player for which the moves are generated
-    private Game lastGameState;  // The last known game state
     private int seed; // Seed value for random number generation
     private final Random random = new Random();// Random number generator
 
 
     /**
-     * Constructs a RandomMoveGenerator object for the specified player color.
+     * Constructs a RandomMoveGenerator object.
      *
-     * @param color The color of the player.
      */
-    public RandomMoveGenerator(Color color) {
-        playerColor = color;
+    public RandomMoveGenerator() {
         seed = random.nextInt();
         random.setSeed(seed);
-    }
-
-    /**
-     * Sets the game and registers this generator as a listener for the game events.
-     *
-     * @param game The game instance.
-     */
-    public void setGame(Game game) {
-        this.lastGameState = game;
-//        game.registerListener(this);
     }
 
     /**
@@ -58,26 +39,6 @@ public class RandomMoveGenerator implements InputSource {
             throw new Error("Unexpected Interrupt");
         }
     }
-
-//    /**
-//     * Called when a new game state is available.
-//     * If it is the current player's turn, clears the moves and plays a turn in the game.
-//     *
-//     * @param game The game instance.
-//     */
-//    @Override
-//    public void OnNextGameState(Game game) {
-//        if (!game.currentPlayerTurn().equals(playerColor.playerNumber())) {
-//            return;
-//        }
-//        moves.clear();
-//        lastGameState = game;
-//        try {
-//            game.playTurn();
-//        } catch (StackOverflowError ignored) {
-//            System.out.println(seed);
-//        }
-//    }
 
     /**
      * Loads random positions into the moves queue.
