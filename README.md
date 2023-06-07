@@ -2,36 +2,16 @@
 **FIT3077 Software Engineering: Architecture and Design** <br>
 By Team 5: Gan Jia Horng | Ravindu Santhush Ratnayake | Danesh Carmel Domingo Mariapan
 
-## Sprint 2 Executable
-_For Sprint 3 executable, see the below section._
-
-
-Run the program `morris.jar` on a Windows platform. 
-
-The executable requires minimum JDK 19 to run. Please ensure the correct
-version is in your PATH variable. Use your terminal to check the environment version of Java
-and ensure it is at least 19.
-![img.png](img.png)
-
-![img_1.png](img_1.png)
-
-If you see the above message when opening the executable,
-click <u>More Info</u> and click <u>Run Anyway</u>
-
-JDK 19 Download:https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html
-
----
-
-## Sprint 3
-### Sprint 3 Submission
-**Design Rationale and diagrams**: `docs/Sprint 3/sprint3.pdf`
+## Sprint 4
+### Sprint 4 Submission
+**Design Rationale and diagrams**: `docs/Sprint 4/sprint4.pdf`
 
 ## Setup Guide
 
 
 To run the project, the user can either build or 
 just run the pre-compiled executable in the repository.
-### Compiled Sprint 3 executable
+### Compiled Sprint 4 executable
 Prerequisites: Windows 10 OS is required for the game to run. 
 
 The executable is self-contained and able 
@@ -46,7 +26,7 @@ click <u>More Info</u> and click <u>Run Anyway</u>
 
 
 ### Building the executable
-Prerequisites: IntelliJ, Minimum version of Java JDK 19
+Prerequisites: IntelliJ, Minimum version of Java JDK 19, Windows 10 or above
 
 The executable requires minimum JDK 19 to run. Please ensure the correct
 version is in your PATH variable. Use your terminal to check the environment version of Java
@@ -74,7 +54,7 @@ build and launch the Application.
 
 ## Game Instructions
 
-**Current State of implementation (full game):**
+**Current State of implementation (Basic game + Advanced Features):**
 1. Player is able to place, move, and jump tokens according to the game rules.
    1. To place a token, click on any empty position. 
    2. To move a token, click on 1 of your token, proceeded by the adjacent empty position that you want to move.
@@ -85,7 +65,15 @@ build and launch the Application.
       1. If an invalid token is pressed anytime in the process
          (e.g. Selecting opposing token color to jump/ Jump to occupied position)
          the initial token to jump has to be reselected again.
-3. When a mill is formed, the player can remove another player's token
+2. When a mill is formed, the player can remove another player's token
 that is not part of a mill or any of it if all of them are a mill. 
 The turn indicator will not alternate the player's turn.
-4. Whoever has 2 tokens left or no legal moves loses.
+3. Whoever has 2 tokens left or no legal moves loses.
+
+For the advanced feature, the team has implemented Advanced Requirement C:
+
+_A single player may play against the computer, where the computer will randomly play a move among 
+all of the currently valid moves for the computer, or any other set of heuristics of your choice_
+
+The feature can be selected on the game menu, where the player has the choice to play as white or black.
+After the player plays a move, the computer will immediately play the next random valid move.
