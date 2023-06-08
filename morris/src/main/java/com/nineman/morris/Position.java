@@ -47,6 +47,7 @@ public class Position {
     private boolean detectHorizontalMill(Position pos, Color color) {
         Position left = pos.left();
         Position right = pos.right();
+
         // Check if both left and right positions are occupied
         if (left != null && right != null) {
             // Set array of respective colors from positions
@@ -70,6 +71,7 @@ public class Position {
     private boolean detectVerticalMill(Position pos, Color color) {
         Position up = pos.up();
         Position down = pos.down();
+
         // Check if both up and down positions are occupied
         if (up != null && down != null) {
             // Set array of respective colors from positions

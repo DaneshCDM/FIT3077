@@ -53,8 +53,7 @@ public class Game extends BoardListenerAdapter {
         while (!board.isGameOver(currentPlayerTurn)) {
             boolean status = getPlayerMove(currentPlayerTurn).execute(currentPlayerTurn, board);
 
-            // Action execution failed, don't proceed the game
-            if (status) {
+            if (status) { // Action execution failed, don't proceed the game
                 nextAction = null;
                 if (!lockPlayerTurn) {
                     currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;

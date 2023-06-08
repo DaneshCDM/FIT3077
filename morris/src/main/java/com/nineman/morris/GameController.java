@@ -1,10 +1,10 @@
 /**
- * GameController is the main controller for the 9 Man Morris game. It manages user interactions,
- * updates the game state, and updates the game view. It implements the InputSource interface
- * to process user input from the game view.
+ * GameController is the main controller for the 'Nine Men's Morris' game.
+ * It manages user interactions, updates the game state, and updates the game view.
+ * It implements the InputSource interface to process user input from the game view.
  *
  * @version 1.0
- * @since 2023-04-26
+ * @since 2023-06-08
  */
 package com.nineman.morris;
 
@@ -31,9 +31,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class GameController extends BoardListenerAdapter implements Initializable, InputSource, GameListener {
+
     @FXML
     private AnchorPane gameScene;
-
     @FXML
     private Label turnIndicatorText;
     private ArrayBlockingQueue<String> clicks = new ArrayBlockingQueue<>(5);
@@ -59,6 +59,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
             generator = new RandomMoveGenerator();
             playerSources.set(0, generator);
         }
+
         // Create a new instance of the Game class, passing 'this' as the InputSource
         Game game = new Game(playerSources);
         game.registerListener(this);
@@ -66,13 +67,16 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         if (generator != null) {
             game.notifyNextState();
         }
+
         // Set up a tooltip with the game rules and attach it to the tutorial node
         Tooltip t = new Tooltip(getRules());
         Tooltip.install(tutorial, t);
         t.setStyle("-fx-font-size: 15");
         t.setShowDelay(Duration.seconds(0.2));
+
         // Create an executor to handle game state updates in response to user clicks
         this.executor = Executors.newSingleThreadExecutor();
+
         // Set up event handlers for each position on the game board
         for (int i = 0; i < positions.getChildren().size(); i++) {
             Node node = positions.getChildren().get(i);
@@ -82,10 +86,16 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                 clicks.offer(Integer.toString(finalI));
             });
         }
+
         // Play the current player's turn and get the updated game state
         executor.execute(game::playTurn);
     }
 
+    /**
+     * Constructs a new GameController with the specified MenuController.
+     *
+     * @param controller The MenuController instance associated with the game.
+     */
     public GameController(MenuController controller) {
         menuController = controller;
     }
@@ -111,8 +121,8 @@ public class GameController extends BoardListenerAdapter implements Initializabl
     }
 
     /**
-     * Updates the game view based on the current state of the game. This method follows the
-     * Model-View-Controller (MVC) architecture by using the game model data to update the view.
+     * Updates the game view based on the current state of the game.
+     * This method follows the Model-View-Controller (MVC) architecture by using the game model data to update the view.
      * It clears and sets appropriate style classes for the token positions and updates the turn
      * indicator text to reflect the current player's turn.
      *
@@ -134,6 +144,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         } else {
             turnIndicatorText.setText(String.format("Player %s Formed a Mill!",  game.currentPlayerTurn()));
         }
+
         // Update the visibility of the token display panes based on the number of remaining tokens
         whiteTokenDisplay.getChildren().forEach(x -> x.setVisible(true));
         blackTokenDisplay.getChildren().forEach(x -> x.setVisible(true));
@@ -147,6 +158,12 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                             .forEach(x -> x.setVisible(false));
     }
 
+    /**
+     * Called when a position is selected on the game board.
+     * Updates the view to highlight the selected position.
+     *
+     * @param position The index of the selected position.
+     */
     @Override
     public void onPositionSelected(int position) {
         Platform.runLater(() -> {
@@ -158,6 +175,12 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         });
     }
 
+    /**
+     * Called when the game is over.
+     * Displays a victory message and allows the user to return to the menu.
+     *
+     * @param c The color of the winning player.
+     */
     @Override
     public void onGameOver(Color c) {
         Platform.runLater(() -> {
@@ -166,6 +189,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
             alert.setTitle("Victory!");
             alert.setHeaderText(String.format("\uD83C\uDF89 Congratulations! \uD83C\uDF89 \n \uD83C\uDFC6 Player %s wins! \uD83C\uDFC6", c.playerNumber()));
             Optional<ButtonType> result = alert.showAndWait();
+
             if (result.isEmpty() || result.get() == ButtonType.OK) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-view.fxml"));
                 Parent root = null;
@@ -174,6 +198,7 @@ public class GameController extends BoardListenerAdapter implements Initializabl
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
                 Scene scene = new Scene(root);
                 String css = getClass().getResource("menu.css").toExternalForm();
                 scene.getStylesheets().add(css);
@@ -206,6 +231,12 @@ public class GameController extends BoardListenerAdapter implements Initializabl
         }
     }
 
+    /**
+     * Called when the next game state is available.
+     * Updates the game view on the JavaFX application thread.
+     *
+     * @param game The next game state.
+     */
     @Override
     public void OnNextGameState(Game game) {
         Platform.runLater(() -> update(game));

@@ -10,6 +10,5 @@ public interface GameListener {
      *
      * @param game The updated game state.
      */
-
     void OnNextGameState(Game game);
 }
