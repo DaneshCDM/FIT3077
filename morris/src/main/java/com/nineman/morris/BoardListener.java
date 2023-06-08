@@ -15,7 +15,7 @@ public interface BoardListener {
     /**
      * Called when the game is over.
      *
-     * @param color The color of the player who won the game.
+     * @param color The color of the winning player or null if it's a draw.
      */
     void onGameOver(Color color);
 
