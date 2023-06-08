@@ -145,7 +145,6 @@ public class Board implements Iterable<Position> {
         }
     }
 
-
     /**
      * Removes a token from the specified position if it belongs to the opponent.
      * It checks if the token color at the position matches the opponent's color
@@ -168,8 +167,16 @@ public class Board implements Iterable<Position> {
         return true;
     }
 
+    /**
+     * Checks if all tokens of a given color / player are part of a mill formation.
+     * Mill formation: a set of three positions in a row or column that are occupied by tokens of the same color / player.
+     *
+     * @param color the color of the tokens to check
+     * @return true if all tokens of the given color are part of a mill formation, false otherwise
+     */
     private boolean allTokensAreMill(Color color) {
-        return Arrays.stream(positions).filter(c -> c.getColor() == color)
+        return Arrays.stream(positions)
+                .filter(c -> c.getColor() == color)
                 .allMatch(x -> x.isPartOfMill(color));
     }
 
@@ -241,7 +248,10 @@ public class Board implements Iterable<Position> {
     }
 
     /**
-     * Notifies all listeners game is over.
+     * Notifies all listeners that the game is over by invoking their `onGameOver()` method.
+     * Method is called when the game reaches a terminal state:
+     * A player with only 2 tokens left or no more valid moves.
+     * Determines the winning color based on the number of tokens remaining for each player.
      */
     public void notifyGameOver() {
         if (!gameOverNotified) {
@@ -251,6 +261,11 @@ public class Board implements Iterable<Position> {
         }
     }
 
+    /**
+     * Notifies all listeners that a position has been selected by invoking their `onPositionSelected()` method.
+     *
+     * @param pos the index of the selected position
+     */
     public void notifyPositionSelected(int pos) {
         listeners.forEach(x -> x.onPositionSelected(pos));
     }
@@ -305,7 +320,8 @@ public class Board implements Iterable<Position> {
     }
 
     /**
-     * Returns an iterator for the positions on the board.
+     * The iterator allows iterating over the positions in the board class,
+     * as a way to traverse and access each position.
      *
      * @return an iterator for the positions on the board
      */
