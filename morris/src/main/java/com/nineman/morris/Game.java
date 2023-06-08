@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a Nine Men's Morris game, managing the game flow, alternating turns between
- * players, and responding to events such as a mill formation. This class follows the
- * Model-View-Controller (MVC) architecture by serving as the model component for the game.
- * It has associations with the Board, Player, and Action classes, and implements the
- * MillListener interface to handle mill-related events.
+ * Represents a 'Nine Men's Morris' game, managing the game flow,
+ * alternating turns between players, and responding to events such as a mill formation.
+ * Game class follows the Model-View-Controller (MVC) architecture by serving as the model component for the game.
+ * It has associations with the Board, Player, and Action classes,
+ * and implements the MillListener interface to handle mill-related events.
  */
 public class Game extends BoardListenerAdapter {
 
@@ -30,9 +30,13 @@ public class Game extends BoardListenerAdapter {
      */
     public Game(List<InputSource> sources) {
         this.board = new Board();
-        this.player1 = new Player(sources.get(0), Color.WHITE); // Assumes player 1 is white
+
+        // Assumes player 1 is white
+        this.player1 = new Player(sources.get(0), Color.WHITE);
         this.player2 = new Player(sources.get(1), Color.BLACK);
-        this.currentPlayerTurn = player1; // White player goes first
+
+        // White player goes first
+        this.currentPlayerTurn = player1;
         this.lockPlayerTurn = false;
         gameObserver = new ArrayList<>();
         board.addBoardListener(this);
@@ -48,7 +52,9 @@ public class Game extends BoardListenerAdapter {
     public void playTurn() {
         while (!board.isGameOver(currentPlayerTurn)) {
             boolean status = getPlayerMove(currentPlayerTurn).execute(currentPlayerTurn, board);
-            if (status) { // Action execution failed, don't proceed the game
+
+            // Action execution failed, don't proceed the game
+            if (status) {
                 nextAction = null;
                 if (!lockPlayerTurn) {
                     currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
@@ -61,14 +67,27 @@ public class Game extends BoardListenerAdapter {
         }
     }
 
+    /**
+     * Returns the next action to be executed by the current player.
+     *
+     * @return the next action to be executed
+     */
     public Action nextAction() {
         return nextAction;
     }
 
+    /**
+     * Registers a game listener to receive updates on the game state.
+     *
+     * @param listener the game listener to register
+     */
     public void registerListener(GameListener listener) {
         gameObserver.add(listener);
     }
 
+    /**
+     * Notifies all game listeners of the next game state.
+     */
     public void notifyNextState() {
         gameObserver.forEach(x -> x.OnNextGameState(this));
     }
@@ -117,4 +136,5 @@ public class Game extends BoardListenerAdapter {
     public void onMillFormed() {
         lockPlayerTurn = true;
     }
+
 }
