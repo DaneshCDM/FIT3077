@@ -43,11 +43,10 @@ public class Game extends BoardListenerAdapter {
     }
 
     /**
-     * Plays a single turn for the current player and updates the game state.
-     * Executes the action determined by the player's current move.
+     * The game loop to execute the game.
+     * Looks for the player moves and execute it if valid.
      * Switches the player turn if the action execution is successful.
      *
-     * @return the updated game state
      */
     public void playTurn() {
         while (!board.isGameOver(currentPlayerTurn)) {
