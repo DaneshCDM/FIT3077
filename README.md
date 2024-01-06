@@ -77,8 +77,9 @@ all of the currently valid moves for the computer, or any other set of heuristic
 
 The feature can be selected on the game menu, where the player has the choice to play as white or black.
 After the player plays a move, the computer will immediately play the next random valid move.
+<br/> <br/>
 
-## Game Screenshots: <br/> <br/>
+## Game Screenshots:
 
 ![Screenshot 2024-01-07 020459](https://github.com/DaneshCDM/FIT3077/assets/66300163/8740b102-baa3-462a-bf5e-6dbbebbfacc8) <br/>
 [Game: Start Menu] <br/> <br/>
