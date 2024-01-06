@@ -81,20 +81,20 @@ After the player plays a move, the computer will immediately play the next rando
 
 ### Game Screenshots: <br/> <br/>
 
-![Screenshot 2024-01-07 020459](https://github.com/DaneshCDM/FIT3077/assets/66300163/8740b102-baa3-462a-bf5e-6dbbebbfacc8)
+![Screenshot 2024-01-07 020459](https://github.com/DaneshCDM/FIT3077/assets/66300163/8740b102-baa3-462a-bf5e-6dbbebbfacc8) <br/>
 [Game: Start Menu] <br/> <br/>
 
-![Screenshot 2024-01-07 020553](https://github.com/DaneshCDM/FIT3077/assets/66300163/e45c640a-8474-4975-9ce8-ea16e82f6119)
+![Screenshot 2024-01-07 020553](https://github.com/DaneshCDM/FIT3077/assets/66300163/e45c640a-8474-4975-9ce8-ea16e82f6119) <br/>
 [Game: Empty Board] <br/> <br/>
 
-![Screenshot 2024-01-07 020705](https://github.com/DaneshCDM/FIT3077/assets/66300163/5ef5e6f1-dbcb-4866-8c6a-9022af7f5a1a)
+![Screenshot 2024-01-07 020705](https://github.com/DaneshCDM/FIT3077/assets/66300163/5ef5e6f1-dbcb-4866-8c6a-9022af7f5a1a) <br/>
 [Sample Game: Early Game (Place Moves)] <br/> <br/>
 
-![Screenshot 2024-01-07 020831](https://github.com/DaneshCDM/FIT3077/assets/66300163/45104f8d-1ab3-4a0c-ab50-0aaa1f175a45)
+![Screenshot 2024-01-07 020831](https://github.com/DaneshCDM/FIT3077/assets/66300163/45104f8d-1ab3-4a0c-ab50-0aaa1f175a45) <br/>
 [Sample Game: Mid Game (Slide Moves)] <br/> <br/>
 
-![Screenshot 2024-01-07 022727](https://github.com/DaneshCDM/FIT3077/assets/66300163/dffd72cc-21bb-40cf-8f56-444bf975728c)
+![Screenshot 2024-01-07 022727](https://github.com/DaneshCDM/FIT3077/assets/66300163/dffd72cc-21bb-40cf-8f56-444bf975728c) <br/>
 [Sample Game: Late Game (Fly Moves)] <br/> <br/>
 
-![Screenshot 2024-01-07 022757](https://github.com/DaneshCDM/FIT3077/assets/66300163/08718dff-8bd8-4baf-9d8d-902b039b51ad)
+![Screenshot 2024-01-07 022757](https://github.com/DaneshCDM/FIT3077/assets/66300163/08718dff-8bd8-4baf-9d8d-902b039b51ad) <br/>
 [Game: Game Over - Victory Screen] <br/> <br/>
